@@ -35,6 +35,83 @@
   
 }
 
+.add-input {
+  margin-left: 15%;
+}
+
+.add-btn {
+  background: #1f1f1f;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-left: 2%;
+}
+
+.add-btn:hover {
+  background: #2b2b2b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.add-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* List items Styles */
+
+.todoItem {
+  background: rgba(45, 143, 133, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 12px 20px;
+  margin: 12px auto;
+  max-width: 1200px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todoItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.todoItem span {
+  flex: 1;
+  padding-right: 12px;
+  text-align: left;
+  word-break: break-word;
+}
+
+.todoItem button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todoItem button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
 a {
   font-weight: 500;
   color: #646cff;

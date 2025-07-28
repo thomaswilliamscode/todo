@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
+import { TodoContext, useTodoContext } from '../app/context/TodoContext';
 
-interface AddTodoFormProps {
-  onSubmit: (todo: string) => void;
-}
+export default function AddToDoForm() {
+  const [input, setInput] = useState('');
+  const { todos, setTodos } = useTodoContext();
 
-export default function AddToDoForm ( { onSubmit } = AddTodoFormProps) {
-  const [ input, setInput ] = useState('')
-
-  function handleSubmit ( e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if(!input.trim()) return;
+    if (!input.trim()) return;
 
-    onSubmit(input)
-    setInput('')
+    const newTodo = {
+      id: Date.now(),
+      title: input,
+      completed: false,
+    };
 
+    setTodos([...todos, newTodo]);
+    setInput('');
   }
 
-
-
   return (
-    <form 
-      onSubmit = {handleSubmit}>
-      <input 
-        type="text" 
+    <form onSubmit={handleSubmit}>
+      <input
+        className='add-input'
+        type='text'
         placeholder='Task'
         onChange={(e) => setInput(e.target.value)}
-        />
-      <button type='submit'>Add</button>
+        value={input}
+      />
+      <button
+        className='add-btn'
+        type='submit'
+      >
+        Add
+      </button>
     </form>
-  ) 
-
+  );
 }
