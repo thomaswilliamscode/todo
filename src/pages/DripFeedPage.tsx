@@ -7,20 +7,15 @@ export default function DripFeedPage() {
 
   useEffect ( () => {
     const todo = todos[0]
-    console.log(todo)
-    console.log(currentTask);
     if (todo === currentTask) {
-      console.log('same')
       return 
     }
     if ( todo !== currentTask) {
       setCurrentTask(todos[0]);
     }
     if ((!todo) && ( todos.length >  0 ) ) {
-      console.log('test1');
       setCurrentTask( todos[0] )
     } else if ( currentTask && !todo) {
-      console.log('test')
       setCurrentTask(null)
   }}, [ todos ] )
 
