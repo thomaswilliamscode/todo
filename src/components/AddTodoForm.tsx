@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TodoContext, useTodoContext } from '../app/context/TodoContext';
+import { TodoContext, useTodoContext } from '../context/TodoContext';
 
 export default function AddToDoForm() {
   const [input, setInput] = useState('');

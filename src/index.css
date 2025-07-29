@@ -66,7 +66,7 @@
 
 /* List items Styles */
 
-.todoItem {
+.todoItem, .drip-feed-item {
   background: rgba(45, 143, 133, 0.25);
   backdrop-filter: blur(8px);
   border-radius: 9999px;
@@ -110,6 +110,10 @@
 
 .todoItem button:hover {
   background-color: rgba(255, 255, 255, 0.15);
+}
+
+.drip-feed-item{
+  margin-top: 10%;
 }
 
 a {

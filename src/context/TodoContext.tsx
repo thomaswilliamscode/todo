@@ -1,11 +1,15 @@
 import { createContext, useContext, useState } from 'react';
 
-import type { Todo } from '../../types/todo'; // ✅ no typo, casing matches
+import type { Todo } from '../types/todo'; // ✅ no typo, casing matches
 
 export interface TodoContextType {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   deleteTodo: (id: number) => void;
+  currentTask: Todo | null ;
+  setCurrentTask: React.Dispatch<React.SetStateAction<Todo | null >> ;
+  // holdTodo: (id: number) => void;
+  skipTodo: () => void; 
 }
 
 export const TodoContext = createContext<TodoContextType | undefined>(
