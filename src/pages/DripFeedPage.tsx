@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useTodoContext } from '../context/TodoContext'
 import type { Todo } from '../types/todo'
+import AddTodoForm from '../components/AddTodoForm'
 
 export default function DripFeedPage() {
   const { currentTask, setCurrentTask, todos, deleteTodo, skipTodo } = useTodoContext();
@@ -31,9 +32,12 @@ export default function DripFeedPage() {
           </h1>
           <span></span>
         </li>
-        <button onClick={() => deleteTodo(currentTask?.id) }>Done</button>
+        <button onClick={() => deleteTodo(currentTask?.id)}>Done</button>
         {/* <button onClick={handleHold}>Hold</button> */}
-        <button onClick={ () => skipTodo()}>Skip</button>
+        <button onClick={() => skipTodo()}>Skip</button>
+      </div>
+      <div id='focus-add-task'>
+        <AddTodoForm />
       </div>
     </div>
   );

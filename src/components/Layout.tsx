@@ -4,18 +4,26 @@ import { useState, useEffect } from 'react';
 import { TodoContext } from '../context/TodoContext.tsx';
 import type { Todo } from '../types/todo.ts';
 import { dummyData } from '../data/todos.ts';
+import Sidebar from './Sidebar'
+import { stateData } from '../data/sidebar-state'
+import type { StateData } from '../types/state-data'
 
 export default function Layout() {
-  const [todos, setTodos] = useState<Todo[]>(() => {
-    const saved = localStorage.getItem('todos');
-    return saved ? JSON.parse(saved) : dummyData;
+  const [sidebarState, setSidebarState] = useState<StateData>(() => {
+    const saved = localStorage.getItem('sidebarState');
+    const parsed = JSON.parse( saved || 'null' )
+    if (parsed && Array.isArray(parsed.data)) {
+      return parsed;
+    } else return stateData;
   });
   
   const [currentTask, setCurrentTask] = useState < Todo | null > ( null );
+  const [ activeFolder, setActiveFolder ] = useState()
+  const [ activeList, setActiveList ] = useState()
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem('sidebarState', JSON.stringify(sidebarState));
+  }, [sidebarState]);
 
   
 
@@ -39,12 +47,22 @@ export default function Layout() {
   return (
     <>
       <TodoContext.Provider
-        value={{ todos, setTodos, deleteTodo: handleDelete, currentTask, setCurrentTask, skipTodo: handleSkip }}
+        value={{
+          sidebarState,
+          setSidebarState,
+          deleteTodo: handleDelete,
+          currentTask,
+          setCurrentTask,
+          skipTodo: handleSkip,
+        }}
       >
         <Header />
-        <main>
-          <Outlet />
-        </main>
+        <div id='layout'>
+          <Sidebar />
+          <main id='main'>
+            <Outlet />
+          </main>
+        </div>
       </TodoContext.Provider>
     </>
   );

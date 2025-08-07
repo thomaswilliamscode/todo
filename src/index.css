@@ -13,6 +13,35 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
+/* Layout */
+
+#layout {
+  
+  display: flex;
+  width: 130%;
+  margin-left: -15%;
+  height: 100vh;
+}
+
+#sidebar {
+  width: 20%;
+}
+
+/* Main */
+#main {
+  flex: 1; 
+  padding: 2rem;
+  width: 80%;
+}
+
+/* Focus add task */
+#focus-add-task {
+  margin-left: -10%;
+  margin-top: 5%;
+}
+
 /* Page Container*/
 
 .container {

@@ -10,7 +10,7 @@ export default function TodoList() {
 
   return (
     <>
-      <ul>
+      {/* <ul>
         {todos.map((todo) => {
           return (
             <li
@@ -23,7 +23,7 @@ export default function TodoList() {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </>
   );
 }

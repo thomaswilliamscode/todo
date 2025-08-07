@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from 'react';
 
-import type { Todo } from '../types/todo'; // ✅ no typo, casing matches
+import type { StateData } from '../types/state-data'
+import type { Todo } from '../types/todo'
 
 export interface TodoContextType {
-  todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  sidebarState: StateData;
+  setSidebarState: React.Dispatch<React.SetStateAction<StateData>>;
   deleteTodo: (id: number) => void;
   currentTask: Todo | null ;
   setCurrentTask: React.Dispatch<React.SetStateAction<Todo | null >> ;
