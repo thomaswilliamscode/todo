@@ -16,7 +16,7 @@ export const data = [
   {
     type: 'list',
     id: 1,
-    name: 'Today',
+    name: 'Today!!!',
     folderId: 1,
     todos: [{ id: 1, title: 'test', completed: false }],
   },

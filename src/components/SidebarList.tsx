@@ -1,16 +1,18 @@
 import type { List } from '../types/list'
 import type { Todo } from '../types/todo'
 import type TodoList from './TodoList'
+import { useParams, Link } from 'react-router-dom'
 
 type Props = {
   list: List;
-  todos: Todo;
 }
 
-export default function SidebarList ( { list, todos }: Props) {
+export default function SidebarList ( { list }: Props) {
+  const { name, todos } = list
+  const { id: activeId } = useParams();
   return (
     <div>
-      {list.name}
+      <Link to={`/list/${list.id}`}>{list.name}</Link>
     </div>
-  )
+  );
 }

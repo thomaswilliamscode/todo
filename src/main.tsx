@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage.tsx';
 import DripFeedPage from './pages/DripFeedPage.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Layout from './components/Layout.tsx';
+import TodoList from './components/TodoList'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: '*',
         element: <ErrorPage />,
       },
+      {
+        path: 'list/:id',
+        element: <TodoList />
+      }
     ],
   },
 ]);

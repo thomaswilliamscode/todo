@@ -26,6 +26,7 @@ export default function SidebarFoldersAndLists () {
       return (
         <SidebarList
           key={list.id}
+          id={list.id}
           list={list}
           todos={list.todos}
         />

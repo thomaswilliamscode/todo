@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { TodoContext } from '../context/TodoContext.tsx';
 import type { Todo } from '../types/todo.ts';
-import { dummyData } from '../data/todos.ts';
 import Sidebar from './Sidebar'
 import { stateData } from '../data/sidebar-state'
 import type { StateData } from '../types/state-data'

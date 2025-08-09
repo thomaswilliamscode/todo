@@ -1,5 +1,5 @@
 import type { StateData } from '../types/state-data';
-import { dummyData } from './todos';
+import { dummyData1, dummyData2, dummyData3 } from './todos';
 
 export const stateData: StateData = {
   data: [
@@ -7,14 +7,14 @@ export const stateData: StateData = {
       type: 'list',
       id: 1,
       name: 'Today',
-      todos: dummyData,
+      todos: dummyData1,
       folderId: 1,
     },
     {
       type: 'list',
       id: 2,
       name: 'Focus Tasks',
-      todos: dummyData,
+      todos: dummyData2,
       folderId: 1,
     },
     {
@@ -27,7 +27,7 @@ export const stateData: StateData = {
       type: 'list',
       id: 3,
       name: '💡 Standalone',
-      todos: dummyData,
+      todos: dummyData3,
       // no folderId — it lives outside folders
     },
   ],
