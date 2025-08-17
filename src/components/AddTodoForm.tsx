@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { TodoContext, useTodoContext } from '../context/TodoContext';
 
-export default function AddToDoForm() {
+type Props = {
+  id: number
+  type: string
+}
+
+export default function AddToDoForm( {id, type}: Props ) {
   const [input, setInput] = useState('');
-  const { todos, setTodos } = useTodoContext();
+  const { sidebarState, setSidebarState } = useTodoContext();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,7 +21,17 @@ export default function AddToDoForm() {
       completed: false,
     };
 
-    setTodos([...todos, newTodo]);
+    setSidebarState( prev => ( {
+      ...prev, 
+      data: prev.data.map( item => 
+        item.type === 'list' && item.id === id
+        ? {...item, todos: [...item.todos, newTodo]}
+        : item
+      )
+
+    }) )
+
+    
     setInput('');
   }
 
