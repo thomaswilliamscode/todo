@@ -1,19 +1,32 @@
 # 🧠 To-Do App – Order of Execution
 
-A focused, fast, and simple to-do app built in React. Designed to feel like a command center — for people who don’t want clutter, just clarity.
+A focused, fast, and simple to-do app built in **React + TypeScript**. Designed to feel like a command center — for people who don’t want clutter, just clarity.
 
-## Features
-- Create and organize to-dos into custom lists
-- Local storage for persistence
-- Clean UI for distraction-free execution
+This project is also serving as my introduction to building real-world apps in TypeScript.
 
-## Tech Stack
+---
+
+## ✨ Features
+
+- Create and manage to-do items across multiple categories  
+- Built for speed, simplicity, and personal flow  
+- Local storage for offline persistence (MVP)  
+- React + context-based state management  
+
+---
+
+## 🛠 Tech Stack
+
 - React (Vite)
-- Context + useReducer for state management
+- TypeScript
+- useContext + useReducer
 - Local Storage (MVP)
-- Supabase (coming soon)
+- Supabase (planned for future backend)
 
-## Roadmap
+---
+
+## 🛣️ Roadmap
+
 - [ ] Enable folder and list creation
 - [ ] Add recurring task functionality
 - [ ] Implement drag-and-drop task reordering
@@ -21,7 +34,9 @@ A focused, fast, and simple to-do app built in React. Designed to feel like a co
 - [ ] Dark mode + personalization options
 - [ ] User authentication with Supabase
 
-## Installation
+---
+
+## 🚀 Installation
 
 ```bash
 git clone https://github.com/thomaswilliamscode/todo.git
