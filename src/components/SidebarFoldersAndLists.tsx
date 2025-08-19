@@ -17,6 +17,32 @@ export default function SidebarFoldersAndLists () {
     })
   }
 
+  function showInfo () {
+    const data = sidebarState.data;
+    return data.map( (obj) => {
+      const type = obj.type;
+      const key = `${obj.type} - ${obj.id}`
+      if (type === 'folder') {
+        return (
+          <SidebarFolder
+            key={key}
+            obj={obj}
+            data={data}
+          />
+        );
+      } if (type === 'list' && !obj.folderId) {
+        return (
+          <SidebarList 
+            key={key}
+            obj={obj}
+          />
+        )
+      }
+    });
+      
+      
+  };
+
   function seeLists() {
     const data = sidebarState.data;
     const lists = data.filter((obj) => {
@@ -35,8 +61,7 @@ export default function SidebarFoldersAndLists () {
   }
   return (
     <div>
-      {seeFolders()}
-      {seeLists()}
+      {showInfo()}
     </div>
   )
 }

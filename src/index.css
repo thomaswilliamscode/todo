@@ -29,6 +29,18 @@
   width: 20%;
 }
 
+/* SideBar */
+.listInFolder{
+  list-style: none;
+}
+
+.hidden{
+  display: none;
+}
+.visible {
+  display: block;
+}
+
 /* Main */
 #main {
   flex: 1; 
