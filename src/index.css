@@ -30,8 +30,15 @@
 }
 
 /* SideBar */
+
+.lists-in-folder{
+  margin-top: 1%;
+  
+  
+}
 .listInFolder{
   list-style: none;
+  
 }
 
 .hidden{

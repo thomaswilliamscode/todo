@@ -27,7 +27,7 @@ export default function SidebarFolder ( {obj, data}: Props) {
   return (
     <div>
       {name}
-      <ul className={isHidden ? 'hidden' : 'visible'}>{listsInFolders()}</ul>
+      <ul className={ `lists-in-folder ${isHidden ? 'hidden' : 'visible'} `}>{listsInFolders()}</ul>
     </div>
   );
 }
