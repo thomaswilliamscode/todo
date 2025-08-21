@@ -27,6 +27,7 @@
 
 #sidebar {
   width: 20%;
+  border: 1px solid red;
 }
 
 /* SideBar */

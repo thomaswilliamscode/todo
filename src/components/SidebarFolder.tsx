@@ -2,6 +2,7 @@ import type { Folder } from '../types/folders'
 import type { StateData } from './types/state-data'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import  useSidebarHooks from '../hooks/sidebarHooks'
 
 type Props = {
   obj: StateData;
@@ -10,11 +11,17 @@ type Props = {
 
 export default function SidebarFolder ( {obj, data}: Props) {
   const { name } = obj
-  const { isHidden, setIsHidden} = useState(obj.open)
+  const [ isOpen, setIsOpen] = useState(obj.open)
+  // if (exists) {
+  //   setIsOpen(true)
+  // } else {
+  //   setIsOpen(false)
+  // }
   
   function listsInFolders () {
     return data.map( (info: StateData) => {
       if ((info.folderId === obj.id) && (info.type !== 'folder')) {
+        
         return (
           <Link key={`${info.id} - ${obj.name}`} 
             to={`/list/${info.id}`}>
@@ -26,8 +33,14 @@ export default function SidebarFolder ( {obj, data}: Props) {
   }
   return (
     <div>
-      {name}
-      <ul className={ `lists-in-folder ${isHidden ? 'hidden' : 'visible'} `}>{listsInFolders()}</ul>
+      <button 
+        onClick={() => setIsOpen((prev) => !prev)}>
+        {name}
+      </button>
+      <button>Delete</button>
+      <ul className={`lists-in-folder ${isOpen ? 'visible' : 'hidden'} `}>
+        {listsInFolders()}
+      </ul>
     </div>
   );
 }

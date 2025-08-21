@@ -42,6 +42,22 @@ export default function Layout() {
     })
   } 
 
+  function addFolder () {
+
+  }
+
+  function deleteFolder () {
+
+  }
+
+  function addList () {
+
+  }
+
+  function deleteList () {
+    
+  }
+
 
   return (
     <>

@@ -5,11 +5,11 @@ export default function Sidebar () {
     <div id='sidebar'>
       <div id='sidebar-top'>
         <h1>SideBar</h1>
-        <p> Today</p>
       </div>
       <div id='sidebar-bottom'>
+        <p> Folder +</p>
         <p>Lists +</p>
-        < SidebarFoldersAndLists />
+        <SidebarFoldersAndLists />
       </div>
     </div>
   );
