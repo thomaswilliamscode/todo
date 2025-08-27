@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useTodoContext } from '../context/TodoContext'
-import TodoList from './TodoList'
+import FolderTodos from './FolderTodos'
 
 export default function FolderPage () {
   const { sidebarState } = useTodoContext()
@@ -12,24 +12,22 @@ export default function FolderPage () {
   const folder = sidebarState.data.filter( (obj) => (obj.id === folderNumber) && (obj.type === 'folder'))
   const lists = sidebarState.data.filter( (obj) => {
     if (obj.folderId === folderNumber && obj.type === 'list') {
-      console.log('OBJ: ' + obj.name);
       return obj;
     }
   })
   const output = lists.map( (obj) => {
-    console.log(`${Date.now()} - ${obj.id}`);
+    console.log(obj.todos);
     return (
       <div key={`${Date.now()} - ${obj.id}`}>
-        <TodoList />
+        
+        <FolderTodos data={obj}/>
       </div>
     );
   })
-  console.log(lists)
   
 
   return (
     <>
-      <p>Folder page here!!!!</p>
       {output}
 
     </>
