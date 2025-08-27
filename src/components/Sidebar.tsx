@@ -1,4 +1,6 @@
 import SidebarFoldersAndLists from './SidebarFoldersAndLists'
+import AddFolderOrList from './AddFolderOrList'
+import { Link } from 'react-router-dom'
 
 export default function Sidebar () {
   return (
@@ -7,8 +9,7 @@ export default function Sidebar () {
         <h1>SideBar</h1>
       </div>
       <div id='sidebar-bottom'>
-        <p> Folder +</p>
-        <p>Lists +</p>
+        <Link to='/add'>Add</Link>
         <SidebarFoldersAndLists />
       </div>
     </div>

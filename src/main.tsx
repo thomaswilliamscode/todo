@@ -9,6 +9,7 @@ import DripFeedPage from './pages/DripFeedPage.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Layout from './components/Layout.tsx';
 import TodoList from './components/TodoList'
+import AddFolderOrList from './components/AddFolderOrList'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: 'list/:id',
         element: <TodoList />
+      },
+      {
+        path: '/add',
+        element: <AddFolderOrList />
       }
     ],
   },
