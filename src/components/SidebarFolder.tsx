@@ -5,12 +5,12 @@ import { useState } from 'react'
 import  useSidebarHooks from '../hooks/sidebarHooks'
 
 type Props = {
-  obj: StateData;
-  data: StateData;
+  obj: Folder;
+  data: StateData[];
 }
 
 export default function SidebarFolder ( {obj, data}: Props) {
-  const { name } = obj
+  const { name, id } = obj
   const [ isOpen, setIsOpen] = useState(obj.open)
   // if (exists) {
   //   setIsOpen(true)
@@ -33,10 +33,21 @@ export default function SidebarFolder ( {obj, data}: Props) {
   }
   return (
     <div>
-      <button 
-        onClick={() => setIsOpen((prev) => !prev)}>
+      {isOpen ? (
+        <i
+          className='fa-solid fa-chevron-down'
+          onClick={() => setIsOpen((prev) => !prev)}
+        ></i>
+      ) : (
+        <i
+          className='fa-solid fa-chevron-up'
+          onClick={() => setIsOpen((prev) => !prev)}
+        ></i>
+      )}
+
+      <Link to={`/folder/${id}`}>
         {name}
-      </button>
+      </Link>
       <button>Delete</button>
       <ul className={`lists-in-folder ${isOpen ? 'visible' : 'hidden'} `}>
         {listsInFolders()}

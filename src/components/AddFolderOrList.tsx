@@ -15,6 +15,9 @@ export default function AddFolderOrList () {
       return (
         <>
           <select
+            onChange={(e) =>
+              setFormState((s) => ({ ...s, folderId: Number(e.target.value) }))
+            }
             name='folder'
             id='folder'
             className='form-select'
@@ -22,7 +25,7 @@ export default function AddFolderOrList () {
             {listFoldersAsOptions()}
           </select>
         </>
-      )
+      );
     }
   }
 
@@ -32,10 +35,11 @@ export default function AddFolderOrList () {
         return array
       }
     })
+    console.log(folders)
+    folders.unshift({type: 'list', name: 'none'})
     const names = folders.map ((folder) => {
       return (
         <option
-          
           value={`${folder.id}`}
           key={`${folder.id}`}
         >
@@ -83,19 +87,22 @@ export default function AddFolderOrList () {
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(sidebarState);
+    console.log(formState);
     const newItem = {}
     if (formState.type === 'list') {
       newItem.id = createId('list')
       newItem.todos = [];
       newItem.type = formState.type;
       newItem.name = formState.title;
+      newItem.folderId = formState.folderId;
+      
     }
     if (formState.type === 'folder') {
       newItem.id = createId('folder');
       newItem.open = false;
       newItem.type = formState.type;
       newItem.name = formState.title;
+      newItem.folderId = undefined;
     }
     
 

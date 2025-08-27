@@ -10,6 +10,7 @@ import ErrorPage from './pages/ErrorPage.tsx';
 import Layout from './components/Layout.tsx';
 import TodoList from './components/TodoList'
 import AddFolderOrList from './components/AddFolderOrList'
+import FolderPage from './components/FolderPage'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/add',
         element: <AddFolderOrList />
+      },
+      {
+        path: '/folder/:id',
+        element: <FolderPage />
       }
     ],
   },
