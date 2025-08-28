@@ -34,7 +34,7 @@ export default function TodoList() {
                 >
                   <span></span>
                   <span>{todo.title}</span>
-                  <button onClick={() => deleteTodo(todo.id)}>🗑️</button>
+                  <button className='del-btn' onClick={() => deleteTodo(todo.id)}>Delete</button>
                 </li>
               );
             }

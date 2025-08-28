@@ -16,7 +16,6 @@ export default function FolderPage () {
     }
   })
   const output = lists.map( (obj) => {
-    console.log(obj.todos);
     return (
       <div key={`${Date.now()} - ${obj.id}`}>
         

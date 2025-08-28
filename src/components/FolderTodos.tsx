@@ -12,7 +12,6 @@ type Props = {
 }
 
 function displayTodos ( todos ) {
-  console.log('This is Array' + todos)
   const display = todos.map( (obj) => {
     if (!obj.completed) {
       return (
@@ -36,10 +35,7 @@ export default function FolderTodos({ data }: Props) {
   return (
     <>
       {data.name}
-      <ul>
-        {displayTodos(todos)}
-      </ul>
-      
+      <ul >{displayTodos(todos)}</ul>
     </>
-  )
+  );
 }

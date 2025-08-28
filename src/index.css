@@ -27,7 +27,8 @@
 
 #sidebar {
   width: 20%;
-  border: 1px solid red;
+  border-right: 0.5px solid aqua;
+  padding-right: 1rem;
 }
 
 /* SideBar */
@@ -47,6 +48,39 @@
 }
 .visible {
   display: block;
+}
+
+.sidebar-List-in-Folder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+.sidebar-List-in-Folder-styling-span{
+  
+  width: 2rem;
+}
+.del-btn{
+  height: 2rem;
+  padding-top: 0.25rem;
+  
+}
+
+.sidebar-folder{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid white;
+}
+.sidebar-ul-no-folder{
+border: 1px solid white;
+display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.no-folder-list-styling-span{
+  width: 2rem;
 }
 
 /* Main */
