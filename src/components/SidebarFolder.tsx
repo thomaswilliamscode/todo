@@ -27,13 +27,11 @@ export default function SidebarFolder ( {obj, data}: Props) {
 
 
   function deleteFolder (idOfFolder: number) {
-    console.log('original State: ', sidebarState)
     const newState = sidebarState.data.filter( (obj) => {
       if ((obj.id === idOfFolder) && (obj.type === 'folder')) {
         return false
       } else return true
     })
-    console.log('NewState ', newState)
     const newStateMapped = newState.map( (obj) => {
       if ((obj.folderId === idOfFolder) && (obj.type === 'list')) {
         console.log('in Mapped');
@@ -51,7 +49,6 @@ export default function SidebarFolder ( {obj, data}: Props) {
   
 
     function deleteList(id: number) {
-      console.log('Id: ', id);
       const filteredState = sidebarState.data.filter((obj) => {
         if (id === obj.id && obj.type === 'list') {
           return false;

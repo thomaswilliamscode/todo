@@ -39,6 +39,8 @@ function displayTodos ( todos ) {
 
 
 
+
+
 export default function FolderTodos({ data }: Props) {
     const { name, todos, id, folderId, type} = data
     const [ input, setInput ] = useState('')

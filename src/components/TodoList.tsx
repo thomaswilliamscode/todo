@@ -16,7 +16,6 @@ export default function TodoList() {
 
 
   function todoDelete (passedId) {
-    console.log('filtered', filtered)
     
     const newTodos = filtered.filter( (obj) => {
       if (obj.id === passedId) {
@@ -29,7 +28,6 @@ export default function TodoList() {
         return {...obj, todos: newTodos}
       } else return obj;
     });
-    console.log('newTodos', newTodos);
     setSidebarState( (prev) => ({
       ...prev,
       data: newMap
