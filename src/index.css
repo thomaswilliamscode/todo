@@ -186,10 +186,8 @@ display: flex;
 }
 
 .todoItem span {
-  flex: 1;
   padding-right: 12px;
   text-align: left;
-  word-break: break-word;
 }
 
 .todoItem button {

@@ -27,6 +27,7 @@ export default function Layout() {
   
 
   function handleDelete(id: number) {
+    console.log('id: ', id)
     const updatedTodos = sidebarState.data.filter((obj) => {
       if ((obj.id === id) && (obj.type === 'list')) {
         return false
