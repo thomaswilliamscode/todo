@@ -27,8 +27,18 @@ export default function Layout() {
   
 
   function handleDelete(id: number) {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    return setTodos(updatedTodos);
+    const updatedTodos = sidebarState.data.filter((obj) => {
+      if ((obj.id === id) && (obj.type === 'list')) {
+        return false
+      } else return true
+    })
+
+    setSidebarState( (prev) => ({
+      ...prev,
+      data: updatedTodos
+    }))
+      
+    
   }
 
   // function handleHold(id: number) {

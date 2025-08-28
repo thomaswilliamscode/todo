@@ -25,13 +25,15 @@
   height: 100vh;
 }
 
+
+
+/* SideBar */
+
 #sidebar {
   width: 20%;
   border-right: 0.5px solid aqua;
   padding-right: 1rem;
 }
-
-/* SideBar */
 
 .lists-in-folder{
   margin-top: 1%;
@@ -54,7 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid Aquamarine;
 }
 .sidebar-List-in-Folder-styling-span{
   
@@ -65,15 +67,22 @@
   padding-top: 0.25rem;
   
 }
+.sidebar-add{
+  border-bottom: 2px solid white;
+  width: 25%;
+  margin-left: 40%;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 
 .sidebar-folder{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid white;
+  border-bottom: 1px solid white;
 }
 .sidebar-ul-no-folder{
-border: 1px solid white;
+border-bottom: 1px solid white;
 display: flex;
   align-items: center;
   justify-content: space-between;
@@ -148,6 +157,10 @@ display: flex;
 }
 
 /* List items Styles */
+
+.todo-title{
+  margin-bottom: 0;
+}
 
 .todoItem, .drip-feed-item {
   background: rgba(45, 143, 133, 0.25);
@@ -231,6 +244,25 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Add Folder or List Page */
+form{
+  padding-top: 5%;
+}
+.form-main-div{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 50%;
+  margin-left: 25%;
+}
+.full-form-div{
+  display: flex;
+}
+
+.form-submit{
+  margin-top: 5%;
 }
 
 @media (prefers-color-scheme: light) {

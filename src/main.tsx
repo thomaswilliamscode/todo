@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <AddFolderOrList />,
       },
       {
         path: '/dripfeed',
@@ -31,16 +31,16 @@ const router = createBrowserRouter([
       },
       {
         path: 'list/:id',
-        element: <TodoList />
+        element: <TodoList />,
       },
       {
         path: '/add',
-        element: <AddFolderOrList />
+        element: <AddFolderOrList />,
       },
       {
         path: '/folder/:id',
-        element: <FolderPage />
-      }
+        element: <FolderPage />,
+      },
     ],
   },
 ]);

@@ -9,7 +9,9 @@ export default function Sidebar () {
         <h1>SideBar</h1>
       </div>
       <div id='sidebar-bottom'>
-        <Link to='/add'>Add</Link>
+        <div className='sidebar-add'>
+          <Link to='/add'>Add</Link>
+        </div>
         <SidebarFoldersAndLists />
       </div>
     </div>

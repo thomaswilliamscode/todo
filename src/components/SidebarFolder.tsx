@@ -52,7 +52,6 @@ export default function SidebarFolder ( {obj, data}: Props) {
 
     function deleteList(id: number) {
       console.log('Id: ', id);
-      console.log('Name: ', name)
       const filteredState = sidebarState.data.filter((obj) => {
         if (id === obj.id && obj.type === 'list') {
           return false;

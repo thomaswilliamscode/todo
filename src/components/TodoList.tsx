@@ -20,9 +20,10 @@ export default function TodoList() {
       }
     })
     const todos = found?.todos
-
+    const title = found.name 
     return (
       <div>
+        <h1 className='todo-title'>{title}</h1>
         <AddTodoForm id={listId!} type={'list'} />
         <ul>
           {todos?.map((todo) => {
@@ -46,7 +47,7 @@ export default function TodoList() {
 
   return (
     <>
-      <h1>TodoList Page Here</h1>
+      
       {displayTodo()}
 
     </>

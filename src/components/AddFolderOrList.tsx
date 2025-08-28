@@ -13,7 +13,7 @@ export default function AddFolderOrList () {
   function viewFolders () {
     if (formState.type === 'list') {
       return (
-        <>
+        <div className='view-folders-div'>
           <select
             onChange={(e) =>
               setFormState((s) => ({ ...s, folderId: Number(e.target.value) }))
@@ -24,7 +24,7 @@ export default function AddFolderOrList () {
           >
             {listFoldersAsOptions()}
           </select>
-        </>
+        </div>
       );
     }
   }
@@ -42,6 +42,7 @@ export default function AddFolderOrList () {
         <option
           value={`${folder.id}`}
           key={`${folder.id}`}
+          
         >
           {folder.name}
         </option>
@@ -120,47 +121,49 @@ export default function AddFolderOrList () {
   }
   return (
     <>
-      <form onSubmit ={submit}>
-        <div>
-          <input
-            type='text'
-            name='name'
-            value={formState.title}
-            onChange={(e) =>
-              setFormState({ ...formState, title: e.target.value })
-            }
-            placeholder='Title'
-          />
-          <div>
+      <form onSubmit={submit}>
+        <div className='full-form-div'>
+          <div className='form-main-div'>
             <input
-              type='radio'
-              value='list'
-              id='list'
-              name='type'
-              checked={formState.type === 'list'}
+              type='text'
+              name='name'
+              value={formState.title}
               onChange={(e) =>
-                setFormState({
-                  ...formState,
-                  type: e.target.value as FormType['type'],
-                })
+                setFormState({ ...formState, title: e.target.value })
               }
+              placeholder='Title'
             />
-            <label htmlFor='list'>List</label>
-            <input
-              type='radio'
-              value='folder'
-              id='folder'
-              name='type'
-              checked={formState.type === 'folder'}
-              onChange={(e) =>
-                setFormState({
-                  ...formState,
-                  type: e.target.value as FormType['type'],
-                })
-              }
-            />
+            <div>
+              <input
+                type='radio'
+                value='list'
+                id='list'
+                name='type'
+                checked={formState.type === 'list'}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    type: e.target.value as FormType['type'],
+                  })
+                }
+              />
+              <label htmlFor='list'>List</label>
+              <input
+                type='radio'
+                value='folder'
+                id='folder'
+                name='type'
+                checked={formState.type === 'folder'}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    type: e.target.value as FormType['type'],
+                  })
+                }
+              />
 
-            <label htmlFor='folder'>Folder</label>
+              <label htmlFor='folder'>Folder</label>
+            </div>
           </div>
           {viewFolders()}
         </div>
