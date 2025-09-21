@@ -11,7 +11,7 @@ export default function TodoList() {
   const { sidebarState, setSidebarState, deleteTodo } = todoContext;
   const { id } = useParams();
   const listId = id ? Number(id) : null;
-  let title = 'test'
+  let title = 'test';
   
 
 
@@ -35,8 +35,10 @@ export default function TodoList() {
   }
 
   const found = sidebarState.data.find((obj) => {
+    title = obj.name
     if (obj.id === listId && obj.type === 'list') {
       return true;
+      
     } else return false;
   });
 
