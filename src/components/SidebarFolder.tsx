@@ -34,7 +34,6 @@ export default function SidebarFolder ( {obj, data}: Props) {
     })
     const newStateMapped = newState.map( (obj) => {
       if ((obj.folderId === idOfFolder) && (obj.type === 'list')) {
-        console.log('in Mapped');
         obj.folderId = 0;
         return obj
       }

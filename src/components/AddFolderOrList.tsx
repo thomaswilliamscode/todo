@@ -35,7 +35,6 @@ export default function AddFolderOrList () {
         return array
       }
     })
-    console.log(folders)
     folders.unshift({type: 'list', name: 'none'})
     const names = folders.map ((folder) => {
       return (
