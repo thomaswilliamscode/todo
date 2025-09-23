@@ -36,20 +36,25 @@ export default function AddToDoForm( {id, type}: Props ) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        className='add-input'
-        type='text'
-        placeholder='Task'
-        onChange={(e) => setInput(e.target.value)}
-        value={input}
-      />
-      <button
-        className='add-btn'
-        type='submit'
-      >
-        Add
-      </button>
+    <form
+      onSubmit={handleSubmit}
+      className='folder-add-todo-form'
+    >
+      <div className='form-input-and-add'>
+        <input
+          className='add-input'
+          type='text'
+          placeholder='Task'
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
+        />
+        <button
+          className='add-btn'
+          type='submit'
+        >
+          Add
+        </button>
+      </div>
     </form>
   );
 }

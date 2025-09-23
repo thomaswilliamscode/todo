@@ -263,6 +263,34 @@ form{
   margin-top: 5%;
 }
 
+/* Folder page*/
+
+.folder-name-and-add-container{
+  display: flex;
+  justify-content: center;
+}
+
+.folder-todo-title{
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+}
+
+.folder-add-todo-form{
+  width: 30%;
+  justify-content: center;
+  padding-top: 0%;
+  margin: auto 0;
+}
+
+.folder-ul{
+  border-bottom: 1px solid gray;
+  padding-bottom: 5%;
+}
+.form-input-and-add {
+  display: flex;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

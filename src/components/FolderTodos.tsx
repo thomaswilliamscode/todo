@@ -32,7 +32,6 @@ export default function FolderTodos({ data }: Props) {
     let { type, id, name, todos, folderId } = data;
 
     let newData = sidebarState.data.map( (objItem) => {
-      console.log('ObjItem ', objItem)
       if(objItem.id === id && objItem.name === name) {
         let todoArrayMap = objItem.todos.map( (insideTodoObj) => {
           if (todoObj.id === insideTodoObj.id) {
@@ -56,18 +55,11 @@ export default function FolderTodos({ data }: Props) {
 
     // set that to completed
     
-    console.log('sidebarData ', sidebarState.data)
-
-    
-
-    console.log('TodoObj ', todoObj);
-    console.log('DataObj', data)
   }
 
   function displayTodos(data) {
     // console.log(data)
     let { type, id, name, todos, folderId } = data
-    console.log(todos)
     const display = todos.map((obj) => {
       if (!obj.completed) {
         return (
@@ -91,16 +83,15 @@ export default function FolderTodos({ data }: Props) {
 
   return (
     <div>
-      <h1 className='todo-title'>{data.name}</h1>
-
-      <div>
+      <div className='folder-name-and-add-container'>
+        <h3 className='folder-todo-title'>{data.name}</h3>
         <AddTodoForm
           id={id}
           type={type}
           key={key}
         />
       </div>
-      <ul>{displayTodos(data)}</ul>
+      <ul className='folder-ul'>{displayTodos(data)}</ul>
     </div>
   );
 }

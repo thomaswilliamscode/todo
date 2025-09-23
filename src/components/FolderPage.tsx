@@ -23,10 +23,11 @@ export default function FolderPage () {
       </div>
     );
   })
-  
+  const title = folder[0].name
 
   return (
     <>
+      <h1>{title}</h1>
       {output}
 
     </>
