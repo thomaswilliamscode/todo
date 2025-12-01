@@ -38,6 +38,7 @@ export default function Layout() {
       ...prev,
       data: updatedTodos
     }))
+    console.log(sidebarState)
       
     
   }
