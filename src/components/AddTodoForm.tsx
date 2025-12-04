@@ -14,11 +14,13 @@ export default function AddToDoForm( {id, type}: Props ) {
     e.preventDefault();
 
     if (!input.trim()) return;
+    //TODO add listId section. 
 
     const newTodo = {
       id: Date.now(),
       title: input,
       completed: false,
+      listId: id
     };
 
     setSidebarState( prev => ( {

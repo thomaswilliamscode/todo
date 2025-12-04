@@ -1,8 +1,14 @@
 import type { StateData } from '../types/state-data';
-import { dummyData1, dummyData2, dummyData3 } from './todos';
+import { dummyData1, dummyData2, dummyData3, dummyData4, inboxData } from './todos';
 
 export const stateData: StateData = {
   data: [
+    {
+      type: 'list',
+      id: 0,
+      name: 'inbox',
+      todos: inboxData
+    },
     {
       type: 'list',
       id: 1,
@@ -40,9 +46,8 @@ export const stateData: StateData = {
       type: 'list',
       id: 4,
       name: 'Focus Tasks',
-      todos: dummyData2,
+      todos: dummyData4,
       folderId: 2,
     },
-    
   ],
 };

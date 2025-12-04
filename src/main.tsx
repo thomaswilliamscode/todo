@@ -11,6 +11,7 @@ import Layout from './components/Layout.tsx';
 import TodoList from './components/TodoList'
 import AddFolderOrList from './components/AddFolderOrList'
 import FolderPage from './components/FolderPage'
+// import Inbox from './pages/Inbox.tsx'
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         path: '/folder/:id',
         element: <FolderPage />,
       },
+      {
+        path: '/inbox',
+        // element: <Inbox />
+      }
     ],
   },
 ]);

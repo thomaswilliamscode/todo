@@ -4,23 +4,25 @@ import type { Todo } from '../types/todo'
 import AddTodoForm from '../components/AddTodoForm'
 
 export default function DripFeedPage() {
-  const { currentTask, setCurrentTask, sidebarState, setSidebarState, deleteTodo, skipTodo } = useTodoContext();
+  const { currentTask, setCurrentTask, sidebarState, setSidebarState, deleteTodo} = useTodoContext();
   const [ todos, setTodos ] = useState<Todo[]>([])
 
   useEffect ( () => {
     let next = defaultAlgo()
     setTodos(next)
-  }, [sidebarState] )
-
-  // have different display algorithim options
-
-  // go through every list and find all todos
+  }, [] )
 
   const findLists = sidebarState.data.filter( (itemObj) => {
     if ( itemObj.type === 'list') {
       return itemObj.todos
     }
   })
+
+  // refreshes focus page sideState data
+  function focusRefresh () {
+    let next = defaultAlgo();
+    setTodos(next);
+  }
 
 // goes from top to bottom and displays each todo one at a time.
   function defaultAlgo () {
@@ -39,42 +41,63 @@ export default function DripFeedPage() {
 
 function dripFeedDelete() {
 
+
+
+  // grab first todo in todos list
+  let first = todos[0]
+  let listId = first.listId;
+
   // if no focus todos, nothing to do
   if (!todos || todos.length === 0) return;
 
   const data = sidebarState.data;
-  let completed = false;
   const newState = data.map((obj) => {
 
     // keep folders and things without todos as-is
     if (obj.type === 'folder' || !obj.todos || obj.todos.length === 0) {
       return obj;
     }
-    let newTodos = obj.todos.map ( (todo) => {
-      if (completed || todo.completed) {
-        return todo
-      } else {
-        completed = true;
-        
-        let answer = {
-          ...todo,
-          completed: true,
-        };
-        return answer
-      }
-    }) 
-    setTodos(newTodos)
-    return {
-      ...obj,
-      todos: newTodos
+    // if we find the list id
+    if (obj.id === listId) {
+      console.log('we in ')
+      // we need to find target todo
+      let newTodos = obj.todos.map((todo) => {
+        if (todo.id !== first.id) {
+          console.log('we in again');
+          return todo;
+        } else {
+          console.log('we in else');
+          let answer = {
+            ...todo,
+            completed: true,
+          };
+          return answer;
+        }
+      }); 
+      return {
+        ...obj,
+        todos: newTodos,
+      };
+    } else {
+      return obj
     }
 
   });
 
-  setSidebarState((prev) => ({
-    ...prev,
-    data: newState,
-  }));
+  setSidebarState( (prev) => ({
+    ...prev, 
+    data: newState
+  }))
+
+  console.log(newState)
+
+  setTodos( (prev) => {
+    if (prev.length <= 0) return prev;
+    const [first, ...rest] = prev
+    return [...rest]
+  })
+
+
 }
 
 
@@ -94,23 +117,34 @@ function dripFeedDelete() {
       setCurrentTask(null)
   }}, [ todos ] )
 
+
+  function skipTodo() {
+    // remove first todo from todos and save the newTodos to state
+    setTodos((prev) => {
+      if (prev.length === 0) return prev;
+      const [first, ...rest] = prev;
+      return [...rest, first];
+    });
+  }
+
   return (
     <div>
       <div>
         <span className='span-container'></span>
+        
         <li className='drip-feed-item'>
           <span></span>
           <h1>
+            
             <span>{currentTask?.title}</span>
           </h1>
           <span></span>
         </li>
-        
-        /* needs to be current folderID and current todo id */
 
         <button onClick={() => dripFeedDelete()}>Done</button>
         {/* <button onClick={handleHold}>Hold</button> */}
         <button onClick={() => skipTodo()}>Skip</button>
+        <button id='refresh-Btn' onClick={ () => focusRefresh() }>Refresh</button>
       </div>
       <div id='focus-add-task'>
         <AddTodoForm />

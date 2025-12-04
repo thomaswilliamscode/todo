@@ -1,5 +1,5 @@
 export interface FormType {
   title: string,
-  type: 'list' | 'folder',
+  type: 'list' | 'folder' | 'inbox',
   folderName?: number,
 }

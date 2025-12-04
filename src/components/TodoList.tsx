@@ -1,4 +1,4 @@
-import { useContext, useState  } from 'react';
+import { useContext, useState, useEffect  } from 'react';
 import { TodoContext } from '../context/TodoContext';
 import { useParams } from 'react-router-dom'
 import AddTodoForm from './AddTodoForm'
@@ -39,7 +39,10 @@ export default function TodoList() {
     if (obj.id === listId && obj.type === 'list') {
       return true;
       
-    } else return false;
+    } else {
+      console.log(obj)
+      return false;
+    }
   });
 
   if (!found) {
