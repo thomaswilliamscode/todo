@@ -25,6 +25,29 @@
   height: 100vh;
 }
 
+/* Focus Page */
+#focus-btn-div button{
+  margin-right: 5px;
+}
+#focus-btn-div button:hover{
+  background: #2b2b2b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid aqua;
+}
+
+#focus-add-task{
+  margin-left: 35%;
+  margin-top: 5%;
+}
+
+.del-btn-inbox{
+  padding-bottom: 2%;
+  margin-right: 35%;
+  margin-left: 40%;
+  padding-right: 5%;
+  margin-bottom: 5%;
+}
 
 
 /* SideBar */
@@ -104,12 +127,6 @@ display: flex;
   flex: 1; 
   padding: 2rem;
   width: 80%;
-}
-
-/* Focus add task */
-#focus-add-task {
-  margin-left: -10%;
-  margin-top: 5%;
 }
 
 /* Page Container*/

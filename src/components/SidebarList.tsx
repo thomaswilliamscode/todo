@@ -32,9 +32,21 @@ export default function SidebarList ( { obj }: Props) {
     }))
   }
 
+  function lookForInbox (id) {
+    if (id === 0) {
+      return (
+        <div className='sidebar-ul-no-folder del-btn-inbox'>
+          <span className='no-folder-list-styling-span'></span>
+          <Link to={`/list/${id}`}>{name}</Link>
+        </div>
+      );
+    }
+  }
 
-  return (
-    <div className='sidebar-ul-no-folder'>
+  function regularSidebar () {
+    console.log(id)
+    return (
+      <div className='sidebar-ul-no-folder'>
       <span className='no-folder-list-styling-span'></span>
       <Link to={`/list/${id}`}>{name}</Link>
       <button
@@ -44,5 +56,9 @@ export default function SidebarList ( { obj }: Props) {
         Delete
       </button>
     </div>
-  );
+    )
+  }
+
+
+  return <>{id === 0 ? lookForInbox(id) : regularSidebar()}</>;
 }

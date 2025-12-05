@@ -131,20 +131,24 @@ function dripFeedDelete() {
     <div>
       <div>
         <span className='span-container'></span>
-        
+
         <li className='drip-feed-item'>
           <span></span>
           <h1>
-            
             <span>{currentTask?.title}</span>
           </h1>
           <span></span>
         </li>
-
-        <button onClick={() => dripFeedDelete()}>Done</button>
-        {/* <button onClick={handleHold}>Hold</button> */}
-        <button onClick={() => skipTodo()}>Skip</button>
-        <button id='refresh-Btn' onClick={ () => focusRefresh() }>Refresh</button>
+        <div id='focus-btn-div'>
+          <button onClick={() => dripFeedDelete()}>Done</button>
+          <button onClick={() => skipTodo()}>Skip</button>
+          <button
+            id='refresh-Btn'
+            onClick={() => focusRefresh()}
+          >
+            Refresh
+          </button>
+        </div>
       </div>
       <div id='focus-add-task'>
         <AddTodoForm />
