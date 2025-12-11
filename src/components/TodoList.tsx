@@ -13,6 +13,13 @@ export default function TodoList() {
   const listId = id ? Number(id) : null;
   let title = 'test';
   
+<<<<<<< HEAD
+=======
+
+  
+
+
+>>>>>>> origin/main
   function todoDelete (passedId) {
     
     const newTodos = filtered.filter( (obj) => {
