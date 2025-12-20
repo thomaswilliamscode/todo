@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useTodoContext } from '../context/TodoContext'
 import FolderTodos from './FolderTodos'
+import type { List } from '../types/list'
 
 export default function FolderPage () {
   const { sidebarState } = useTodoContext()
@@ -9,21 +10,20 @@ export default function FolderPage () {
   const folderNumber = Number(id);
 
   
-  const folder = sidebarState.data.filter( (obj) => (obj.id === folderNumber) && (obj.type === 'folder'))
-  const lists = sidebarState.data.filter( (obj) => {
-    if (obj.folderId === folderNumber && obj.type === 'list') {
-      return obj;
-    }
-  })
-  const output = lists.map( (obj) => {
+  const folder = sidebarState.data.find(
+    (obj) => obj.type === 'folder' && obj.id === folderNumber
+  );
+  const lists = sidebarState.data.filter(
+    (obj): obj is List => obj.type === 'list' && obj.folderId === folderNumber
+  );
+  const output = lists.map((obj) => {
     return (
-      <div key={`${Date.now()} - ${obj.id}`}>
-        
-        <FolderTodos data={obj}/>
+      <div key={obj.id}>
+        <FolderTodos data={obj} />
       </div>
     );
-  })
-  const title = folder[0].name
+  });
+  const title = folder?.name ?? 'Folder';
 
   return (
     <>

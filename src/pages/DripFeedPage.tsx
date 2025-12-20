@@ -93,8 +93,8 @@ function dripFeedDelete() {
 
   setTodos( (prev) => {
     if (prev.length <= 0) return prev;
-    const [first, ...rest] = prev
-    return [...rest]
+    const [, ...rest] = prev
+    return rest
   })
 
 
