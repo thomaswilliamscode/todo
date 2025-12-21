@@ -1,9 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 
 .logo {
   height: 6em;

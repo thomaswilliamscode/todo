@@ -1,39 +1,38 @@
 import React, { useState } from 'react';
-import { TodoContext, useTodoContext } from '../context/TodoContext';
+import { useTodoContext } from '../context/TodoContext';
 
 type Props = {
-  id: number
-  type: string
+  id?: number
+  type?: string
 }
 
-export default function AddToDoForm( {id, type}: Props ) {
+export default function AddToDoForm( { id }: Props ) {
   const [input, setInput] = useState('');
-  const { sidebarState, setSidebarState } = useTodoContext();
+  const { setSidebarState } = useTodoContext();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!input.trim()) return;
-    //TODO add listId section. 
+
+    if (id == null) return; // or throw, or show an error
 
     const newTodo = {
       id: Date.now(),
       title: input,
       completed: false,
-      listId: id
+      listId: id,
     };
 
-    setSidebarState( prev => ( {
-      ...prev, 
-      data: prev.data.map( item => 
+    setSidebarState((prev) => ({
+      ...prev,
+      data: prev.data.map((item) =>
         item.type === 'list' && item.id === id
-        ? {...item, todos: [...item.todos, newTodo]}
-        : item
-      )
+          ? { ...item, todos: [...item.todos, newTodo] }
+          : item
+      ),
+    }));
 
-    }) )
-
-    
     setInput('');
   }
 

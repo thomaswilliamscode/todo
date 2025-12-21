@@ -1,32 +1,31 @@
 import { useState, useEffect } from 'react'
 import { useTodoContext } from '../context/TodoContext'
 import type { Todo } from '../types/todo'
+import type { List } from '../types/list'
 import AddTodoForm from '../components/AddTodoForm'
 
 export default function DripFeedPage() {
-  const { currentTask, setCurrentTask, sidebarState, setSidebarState, deleteTodo} = useTodoContext();
+  const { currentTask, setCurrentTask, sidebarState, setSidebarState } = useTodoContext();
   const [ todos, setTodos ] = useState<Todo[]>([])
 
   useEffect ( () => {
-    let next = defaultAlgo()
+    const next = defaultAlgo()
     setTodos(next)
   }, [] )
 
-  const findLists = sidebarState.data.filter( (itemObj) => {
-    if ( itemObj.type === 'list') {
-      return itemObj.todos
-    }
-  })
+  const findLists = sidebarState.data.filter(
+    (itemObj): itemObj is List => itemObj.type === 'list'
+  );
 
   // refreshes focus page sideState data
   function focusRefresh () {
-    let next = defaultAlgo();
+    const next = defaultAlgo();
     setTodos(next);
   }
 
 // goes from top to bottom and displays each todo one at a time.
   function defaultAlgo () {
-    let current = [];
+    const current: Todo[] = [];
     for ( let i = 0; i < findLists.length; i++ ) {
       for (let j = 0; j < findLists[i].todos.length; j++) {
         let todo = findLists[i].todos[j]
@@ -93,8 +92,8 @@ function dripFeedDelete() {
 
   setTodos( (prev) => {
     if (prev.length <= 0) return prev;
-    const [first, ...rest] = prev
-    return [...rest]
+    const [, ...rest] = prev
+    return rest
   })
 
 

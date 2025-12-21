@@ -1,21 +1,12 @@
-import type { Todo } from '../types/todo'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import AddTodoForm from './AddTodoForm'
 import { TodoContext } from '../context/TodoContext'
-
+import type { List } from '../types/list'
+import type { Todo } from '../types/todo'
 
 type Props = {
-  data: {
-    type: 'list',
-    id: number,
-    name: string,
-    todos: Todo[],
-    folderId: number
-  };
+  data: List;
 }
-
-
-
 
 export default function FolderTodos({ data }: Props) {
   const todoContext = useContext(TodoContext);
@@ -23,73 +14,50 @@ export default function FolderTodos({ data }: Props) {
       throw new Error('TodoContext is undefined');
     }
     const { sidebarState, setSidebarState } = todoContext;
-    const { name, todos, id, folderId, type} = data
-    const [ input, setInput ] = useState('')
-    const key = Date.now()
+    const { id, type } = data
 
-
-  function todoDelete(todoObj, data) {
-    let { type, id, name, todos, folderId } = data;
-
-    let newData = sidebarState.data.map( (objItem) => {
-      if(objItem.id === id && objItem.name === name) {
-        let todoArrayMap = objItem.todos.map( (insideTodoObj) => {
+  function todoDelete(todoObj: Todo, listData: List) {
+    const newData = sidebarState.data.map((objItem) => {
+      // Only lists have `todos`
+      if (objItem.type === 'list' && objItem.id === listData.id) {
+        const todoArrayMap = objItem.todos.map((insideTodoObj) => {
           if (todoObj.id === insideTodoObj.id) {
-            return {...insideTodoObj, completed: true}
-          } 
-          return insideTodoObj
-        })
-        return {...objItem, todos: todoArrayMap}
-      } else {
-        return objItem
+            return { ...insideTodoObj, completed: true };
+          }
+          return insideTodoObj;
+        });
+
+        return { ...objItem, todos: todoArrayMap };
       }
-    })
 
-    
-    // find sidebarstatedata that matches data.name && data.id. 
-    setSidebarState( (prev) => ({
+      return objItem;
+    });
+
+    setSidebarState((prev) => ({
       ...prev,
-      data: newData
-    }))
-    // inside that todo array, find todoObj.id
-
-    // set that to completed
-    
+      data: newData,
+    }));
   }
 
-  function displayTodos(data) {
-    // console.log(data)
-    let { type, id, name, todos, folderId } = data
-    const display = todos.map((obj) => {
-      if (!obj.completed) {
-        return (
-          <li
-            key={`${obj.id}`}
-            className='folder-todos todoItem'
-          >
-            <span></span>
-            <span>{obj.title}</span>
-            <button onClick={() => todoDelete(obj, data)}>Delete</button>
-          </li>
-        );
-      }
-    });
+  function displayTodos(listData: List) {
+    const display = listData.todos
+      .filter((t) => !t.completed)
+      .map((t) => (
+        <li key={`${t.id}`} className='folder-todos todoItem'>
+          <span></span>
+          <span>{t.title}</span>
+          <button onClick={() => todoDelete(t, listData)}>Delete</button>
+        </li>
+      ));
 
     return display;
   }
-
-
-
 
   return (
     <div>
       <div className='folder-name-and-add-container'>
         <h3 className='folder-todo-title'>{data.name}</h3>
-        <AddTodoForm
-          id={id}
-          type={type}
-          key={key}
-        />
+        <AddTodoForm id={id} type={type} />
       </div>
       <ul className='folder-ul'>{displayTodos(data)}</ul>
     </div>

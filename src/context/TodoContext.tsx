@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 import type { StateData } from '../types/state-data'
 import type { Todo } from '../types/todo'
@@ -9,8 +9,6 @@ export interface TodoContextType {
   deleteTodo: (id: number) => void;
   currentTask: Todo | null ;
   setCurrentTask: React.Dispatch<React.SetStateAction<Todo | null >> ;
-  // holdTodo: (id: number) => void;
-  skipTodo: () => void; 
 }
 
 export const TodoContext = createContext<TodoContextType | undefined>(
