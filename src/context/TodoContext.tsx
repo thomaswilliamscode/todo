@@ -9,8 +9,6 @@ export interface TodoContextType {
   deleteTodo: (id: number) => void;
   currentTask: Todo | null ;
   setCurrentTask: React.Dispatch<React.SetStateAction<Todo | null >> ;
-  // holdTodo: (id: number) => void;
-  skipTodo: () => void; 
 }
 
 export const TodoContext = createContext<TodoContextType | undefined>(
