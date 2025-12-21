@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import AddTodoForm from './AddTodoForm'
 import { TodoContext } from '../context/TodoContext'
 import type { List } from '../types/list'
@@ -15,7 +15,6 @@ export default function FolderTodos({ data }: Props) {
     }
     const { sidebarState, setSidebarState } = todoContext;
     const { id, type } = data
-    const [input, setInput] = useState('')
 
   function todoDelete(todoObj: Todo, listData: List) {
     const newData = sidebarState.data.map((objItem) => {
