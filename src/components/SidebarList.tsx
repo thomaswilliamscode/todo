@@ -1,30 +1,24 @@
-import type { List } from '../types/list'
-import type { Todo } from '../types/todo'
-import type TodoList from './TodoList'
-import { useParams, Link } from 'react-router-dom'
-import type { StateData } from './types/state-data';
+import { Link } from 'react-router-dom'
 import { useTodoContext } from '../context/TodoContext'
+import type { List } from '../types/list'
+import type { Inbox } from '../types/inbox'
 
+type SidebarItem = List | Inbox;
 
 type Props = {
-  obj: StateData;
-}
-
+  obj: SidebarItem;
+};
 
 
 export default function SidebarList ( { obj }: Props) {
   const { name, id } = obj
-  const { id: activeId } = useParams();
   const { sidebarState, setSidebarState } = useTodoContext()
 
 
-
   function deleteList (id: number) {
-    const filteredState = sidebarState.data.filter( (obj) => {
-      if ((id === obj.id) && (obj.type === 'list')) {
-        return false
-      } else return true
-    } )
+    const filteredState = sidebarState.data.filter(
+      (item) => !(item.type === 'list' && item.id === id)
+    );
 
     setSidebarState( (prev) => ({
       ...prev,
@@ -32,7 +26,7 @@ export default function SidebarList ( { obj }: Props) {
     }))
   }
 
-  function lookForInbox (id) {
+  function lookForInbox(id: number) {
     if (id === 0) {
       return (
         <div className='sidebar-ul-no-folder del-btn-inbox'>
@@ -41,10 +35,11 @@ export default function SidebarList ( { obj }: Props) {
         </div>
       );
     }
+
+    return null;
   }
 
   function regularSidebar () {
-    console.log(id)
     return (
       <div className='sidebar-ul-no-folder'>
       <span className='no-folder-list-styling-span'></span>

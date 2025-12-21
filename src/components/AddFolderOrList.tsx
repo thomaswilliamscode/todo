@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
 import { useTodoContext } from '../context/TodoContext'
 import { useState } from 'react'
 import type { FormType } from '../types/formType'
+import type { Todo } from '../types/todo'
 
 export default function AddFolderOrList () {
   const { sidebarState, setSidebarState } = useTodoContext()
@@ -35,7 +35,7 @@ export default function AddFolderOrList () {
         return array
       }
     })
-    folders.unshift({type: 'list', name: 'none'})
+    folders.unshift({type: 'list', name: 'none', id:0, todos: []})
     const names = folders.map ((folder) => {
       return (
         <option
@@ -87,17 +87,40 @@ export default function AddFolderOrList () {
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(formState);
-    const newItem = {}
+    type NewListItem = {
+      id: number;
+      todos: Todo[]; 
+      type: 'list';
+      name: string;
+      folderId?: number
+    }
+    type NewFolderItem = {
+      id: number;
+      open: boolean;
+      type: 'folder';
+      name: string;
+      folderId: undefined;
+    }
+
+    let newItem: NewListItem | NewFolderItem;
     if (formState.type === 'list') {
-      newItem.id = createId('list')
-      newItem.todos = [];
-      newItem.type = formState.type;
-      newItem.name = formState.title;
-      newItem.folderId = formState.folderId;
+      newItem = {
+        id: createId('list'),
+        todos: [],
+        type: 'list',
+        name: formState.title,
+        folderId: formState.folderId,
+      }
       
     }
     if (formState.type === 'folder') {
+      newItem = {
+        id: createId('folder'),
+        open: false,
+        type: 'folder',
+        name: formState.title,
+        folderId: undefined
+      }
       newItem.id = createId('folder');
       newItem.open = false;
       newItem.type = formState.type;

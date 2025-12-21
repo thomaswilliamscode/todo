@@ -17,8 +17,6 @@ export default function Layout() {
   });
   
   const [currentTask, setCurrentTask] = useState < Todo | null > ( null );
-  const [ activeFolder, setActiveFolder ] = useState()
-  const [ activeList, setActiveList ] = useState()
 
   useEffect(() => {
     localStorage.setItem('sidebarState', JSON.stringify(sidebarState));
@@ -43,33 +41,6 @@ export default function Layout() {
     
   }
 
-  // function handleHold(id: number) {
-
-  // }
-
-  function handleSkip() {
-    setTodos( prev => {
-      const [ first, ...rest] = prev;
-      return [...rest, first]
-    })
-  } 
-
-  function addFolder () {
-
-  }
-
-  function deleteFolder () {
-
-  }
-
-  function addList () {
-
-  }
-
-  function deleteList () {
-    
-  }
-
 
   return (
     <>
@@ -80,7 +51,6 @@ export default function Layout() {
           deleteTodo: handleDelete,
           currentTask,
           setCurrentTask,
-          skipTodo: handleSkip,
         }}
       >
         <Header />

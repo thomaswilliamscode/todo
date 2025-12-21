@@ -1,3 +1,12 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -18,11 +27,11 @@
 /* Layout */
 
 #layout {
-  
   display: flex;
-  width: 130%;
-  margin-left: -15%;
+  width: 100%;
+  margin-left: 0;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Focus Page */
@@ -129,9 +138,9 @@ display: flex;
 
 /* Main */
 #main {
-  flex: 1; 
+  flex: 1;
   padding: 2rem;
-  width: 80%;
+  min-width: 0;
 }
 
 /* Page Container*/

@@ -1,47 +1,42 @@
-import { useContext, useState, useEffect  } from 'react';
+import { useContext } from 'react';
 import { TodoContext } from '../context/TodoContext';
 import { useParams } from 'react-router-dom'
 import AddTodoForm from './AddTodoForm'
+import type { List } from '../types/list'
+import type { Todo } from '../types/todo'
 
 export default function TodoList() {
   const todoContext = useContext(TodoContext);
   if (!todoContext) {
     throw new Error('TodoContext is undefined');
   }
-  const { sidebarState, setSidebarState, deleteTodo } = todoContext;
+  const { sidebarState, setSidebarState } = todoContext;
   const { id } = useParams();
-  const listId = id ? Number(id) : null;
+  const listId = id ? Number(id) : undefined;
   let title = 'test';
   
-  function todoDelete (passedId) {
-    
-    const newTodos = filtered.filter( (obj) => {
-      if (obj.id === passedId) {
-        return false
-      } else return true
-    })
+  function todoDelete(passedId: number) {
     const newMap = sidebarState.data.map((obj) => {
-      if ((obj.id === listId) && (obj.type === 'list')){
-        const newTodos = obj.todos.filter( t => t.id !== passedId)
-        return {...obj, todos: newTodos}
-      } else return obj;
+      if (obj.type === 'list' && obj.id === listId) {
+        const newTodos = obj.todos.filter((t: Todo) => t.id !== passedId);
+        return { ...obj, todos: newTodos };
+      }
+      return obj;
     });
-    setSidebarState( (prev) => ({
+
+    setSidebarState((prev) => ({
       ...prev,
-      data: newMap
-    }))
+      data: newMap,
+    }));
   }
 
-  const found = sidebarState.data.find((obj) => {
-    title = obj.name
-    if (obj.id === listId && obj.type === 'list') {
-      return true;
-      
-    } else {
-      console.log(obj)
-      return false;
-    }
-  });
+  const found = sidebarState.data.find(
+    (obj): obj is List => obj.type === 'list' && obj.id === listId
+  );
+
+  if (found) {
+    title = found.name;
+  }
 
   if (!found) {
     return (
@@ -52,27 +47,22 @@ export default function TodoList() {
   }
 
   
-  const filtered = found.todos.filter((obj) => {
-    if (!obj.completed) {
-      return true;
-    } else return false;
-  });
+  const filtered: Todo[] = found.todos.filter((t: Todo) => !t.completed);
 
   function listItem() {
 
-      const mapped = filtered.map( (obj) => {
-        const { title } = obj
+      const mapped = filtered.map((obj: Todo) => {
         const key = obj.id;
         return (
           <div key={key}>
             <li className='todoItem'>
               <span></span>
-              {title}
-              <button onClick={ () => todoDelete(obj.id)}>Delete</button>
+              {obj.title}
+              <button onClick={() => todoDelete(obj.id)}>Delete</button>
             </li>
           </div>
         );
-      })
+      });
       return mapped 
   }
 

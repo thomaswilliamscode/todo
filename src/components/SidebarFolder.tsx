@@ -1,89 +1,76 @@
-import type { Folder } from '../types/folders'
-import type { StateData } from './types/state-data'
+import type { Folder } from '../types/folder'
+import type { List } from '../types/list'
+import type { Inbox } from '../types/inbox'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import  useSidebarHooks from '../hooks/sidebarHooks'
 import { useTodoContext } from '../context/TodoContext'
+
+type SidebarItem = Folder | List | Inbox;
 
 type Props = {
   obj: Folder;
-  data: StateData[];
+  data: SidebarItem[];
 }
 
 export default function SidebarFolder ( {obj, data}: Props) {
   const { name, id } = obj
   const [ isOpen, setIsOpen] = useState(obj.open)
   const { sidebarState, setSidebarState } = useTodoContext()
-  // if (exists) {
-  //   setIsOpen(true)
-  // } else {
-  //   setIsOpen(false)
-  // }
-
-  /*Delete Function 
-    onclick - update state to remove that sidebar folder
-    set folder ID for any lists to zero - 
-   */
 
 
-  function deleteFolder (idOfFolder: number) {
-    const newState = sidebarState.data.filter( (obj) => {
-      if ((obj.id === idOfFolder) && (obj.type === 'folder')) {
-        return false
-      } else return true
-    })
-    const newStateMapped = newState.map( (obj) => {
-      if ((obj.folderId === idOfFolder) && (obj.type === 'list')) {
-        obj.folderId = 0;
-        return obj
+  function deleteFolder(idOfFolder: number) {
+    // remove the folder itself
+    const withoutFolder = sidebarState.data.filter(
+      (item) => !(item.type === 'folder' && item.id === idOfFolder)
+    );
+
+    // any lists that were inside this folder get moved to "none" (folderId 0)
+    const remapped = withoutFolder.map((item) => {
+      if (item.type === 'list' && item.folderId === idOfFolder) {
+        return { ...item, folderId: 0 };
       }
-      return obj
-    })
-    setSidebarState( (prev) => ({
+      return item;
+    });
+
+    setSidebarState((prev) => ({
       ...prev,
-      data: newStateMapped
-    }))
+      data: remapped,
+    }));
   }
 
   
 
-    function deleteList(id: number) {
-      const filteredState = sidebarState.data.filter((obj) => {
-        if (id === obj.id && obj.type === 'list') {
-          return false;
-        } else return true;
-      });
+  function deleteList(idToDelete: number) {
+    const filteredState = sidebarState.data.filter(
+      (item) => !(item.type === 'list' && item.id === idToDelete)
+    );
 
-      setSidebarState((prev) => ({
-        ...prev,
-        data: filteredState,
-      }));
-    }
+    setSidebarState((prev) => ({
+      ...prev,
+      data: filteredState,
+    }));
+  }
 
   
-  function listsInFolders () {
-    return data.map( (info: StateData) => {
-      if ((info.folderId === obj.id) && (info.type !== 'folder')) {
-        
+  function listsInFolders() {
+    return data.map((info) => {
+      // Only lists have folderId + are linkable as lists
+      if (info.type === 'list' && info.folderId === obj.id) {
         return (
-          <div
-            className='sidebar-List-in-Folder'
-            key={`${info.id} - ${obj.name}`}
-          >
+          <div className='sidebar-List-in-Folder' key={`${info.id}-${obj.id}`}>
             <span className='sidebar-List-in-Folder-styling-span'></span>
             <Link to={`/list/${info.id}`}>
               <li className='listInFolder'>{info.name}</li>
             </Link>
-            <button
-              className='del-btn'
-              onClick={() => deleteList(info.id)}
-            >
+            <button className='del-btn' onClick={() => deleteList(info.id)}>
               Delete
             </button>
           </div>
         );
       }
-    })
+
+      return null;
+    });
   }
   return (
     <div>
