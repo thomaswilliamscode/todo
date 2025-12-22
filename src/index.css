@@ -303,17 +303,22 @@ form{
 }
 .form-main-div{
   display: flex;
-  justify-content: center;
   gap: 2rem;
-  width: 50%;
-  margin-left: 25%;
+  width: 30%;
+  margin-left: 10%;
+  
 }
 .full-form-div{
   display: flex;
 }
 
+#drop-down {
+  margin-left: 5rem;
+  margin-right: -5%;
+}
+
 .form-submit{
-  margin-top: 5%;
+  margin-left: 5rem;
 }
 
 /* Folder page*/

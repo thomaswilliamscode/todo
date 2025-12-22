@@ -187,14 +187,16 @@ export default function AddFolderOrList () {
               <label htmlFor='folder'>Folder</label>
             </div>
           </div>
-          {viewFolders()}
+          <span id='drop-down'>
+            {viewFolders()}
+          </span>
+          <button
+            className='form-submit'
+            type='submit'
+          >
+            Submit
+          </button>
         </div>
-        <button
-          className='form-submit'
-          type='submit'
-        >
-          Submit
-        </button>
       </form>
     </>
   );
