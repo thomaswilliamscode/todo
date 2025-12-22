@@ -323,7 +323,7 @@ form{
 
 /* Folder page*/
 
-#title{
+.title{
   display: flex;
   justify-content: center;
 }
