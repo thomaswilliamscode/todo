@@ -30,13 +30,18 @@ html, body {
   display: flex;
   width: 100%;
   margin-left: 0;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
+  flex-wrap: wrap; /* allow header to take its own row */
+  align-items: stretch;
 }
 
 /* Focus Page */
-#focus-btn-div button{
-  margin-right: 5px;
+#focus-btn-div{
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 1rem;
 }
 #focus-btn-div button:hover{
   background: #2b2b2b;
@@ -68,6 +73,7 @@ html, body {
 
 #sidebar {
   width: 20%;
+  flex: 0 0 20%;
   border-right: 0.5px solid aqua;
   padding-right: 1rem;
 }
@@ -119,6 +125,10 @@ html, body {
   margin-bottom: 0.5rem;
 }
 
+#add-link{
+  padding-left: 1.25rem;
+}
+
 .sidebar-folder{
   display: flex;
   align-items: center;
@@ -138,7 +148,7 @@ display: flex;
 
 /* Main */
 #main {
-  flex: 1;
+  flex: 1 1 0;
   padding: 2rem;
   min-width: 0;
 }
@@ -147,22 +157,30 @@ display: flex;
 
 .container {
   width: 100%;
-  margin-left: 0%;
-  margin-top: -5%;
-  padding: 1rem;
+  margin-left: 0;
+  margin-top: 0;
+  padding: 0;
 }
 /* Header */
 
 .header {
   display: flex;
+  height: 100px;
+  width: 100%;
+  flex: 0 0 100%; /* take full row inside #layout */
+  align-items: center;
+  justify-content: center;
 }
 
 .header ul {
-  display:flex;
-  justify-content: space-around;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8rem;
   list-style: none;
   width: 100%;
-  
+  margin: 0;
+  padding: 0;
 }
 
 .add-input {
@@ -244,10 +262,6 @@ display: flex;
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.drip-feed-item{
-  margin-top: 10%;
-}
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -288,20 +302,30 @@ form{
 }
 .form-main-div{
   display: flex;
-  justify-content: center;
   gap: 2rem;
-  width: 50%;
-  margin-left: 25%;
+  width: 30%;
+  margin-left: 10%;
+  
 }
 .full-form-div{
   display: flex;
 }
 
+#drop-down {
+  margin-left: 5rem;
+  margin-right: -5%;
+}
+
 .form-submit{
-  margin-top: 5%;
+  margin-left: 5rem;
 }
 
 /* Folder page*/
+
+.title{
+  display: flex;
+  justify-content: center;
+}
 
 .folder-name-and-add-container{
   display: flex;
