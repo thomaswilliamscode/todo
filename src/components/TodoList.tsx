@@ -68,7 +68,7 @@ export default function TodoList() {
 
   return (
   <div>
-    <h1>{title}</h1>
+    <h1 className='title'>{title}</h1>
     <div id='list-todo'>
       <AddTodoForm id={listId} type={'list'}/>
     </div>
