@@ -73,6 +73,7 @@ html, body {
   flex: 0 0 20%;
   border-right: 0.5px solid aqua;
   padding-right: 1rem;
+  border: 1px solid red;
 }
 
 .lists-in-folder{
@@ -120,6 +121,10 @@ html, body {
   margin-left: 40%;
   padding: 2px 0px;
   margin-bottom: 0.5rem;
+}
+
+#add-link{
+  padding-left: 1.25rem;
 }
 
 .sidebar-folder{
