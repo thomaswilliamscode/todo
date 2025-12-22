@@ -37,8 +37,11 @@ html, body {
 }
 
 /* Focus Page */
-#focus-btn-div button{
-  margin-right: 5px;
+#focus-btn-div{
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 1rem;
 }
 #focus-btn-div button:hover{
   background: #2b2b2b;
@@ -258,10 +261,6 @@ display: flex;
 
 .todoItem button:hover {
   background-color: rgba(255, 255, 255, 0.15);
-}
-
-.drip-feed-item{
-  margin-top: 10%;
 }
 
 a {
