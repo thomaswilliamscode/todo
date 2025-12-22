@@ -27,7 +27,7 @@ export default function FolderPage () {
 
   return (
     <>
-      <h1>{title}</h1>
+      <h1 id='title'>{title}</h1>
       {output}
 
     </>

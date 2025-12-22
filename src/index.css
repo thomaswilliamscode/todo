@@ -323,6 +323,11 @@ form{
 
 /* Folder page*/
 
+#title{
+  display: flex;
+  justify-content: center;
+}
+
 .folder-name-and-add-container{
   display: flex;
   justify-content: center;
