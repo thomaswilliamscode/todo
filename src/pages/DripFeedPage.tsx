@@ -58,14 +58,11 @@ function dripFeedDelete() {
     }
     // if we find the list id
     if (obj.id === listId) {
-      console.log('we in ')
       // we need to find target todo
       let newTodos = obj.todos.map((todo) => {
         if (todo.id !== first.id) {
-          console.log('we in again');
           return todo;
         } else {
-          console.log('we in else');
           let answer = {
             ...todo,
             completed: true,
@@ -88,7 +85,6 @@ function dripFeedDelete() {
     data: newState
   }))
 
-  console.log(newState)
 
   setTodos( (prev) => {
     if (prev.length <= 0) return prev;
