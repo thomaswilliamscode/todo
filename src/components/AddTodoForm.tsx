@@ -15,19 +15,21 @@ export default function AddToDoForm( { id }: Props ) {
 
     if (!input.trim()) return;
 
-    if (id == null) return; // or throw, or show an error
+    // Focus Mode may render this form without an explicit list id.
+    // Default to Inbox (id 0).
+    const resolvedListId = id ?? 0;
 
     const newTodo = {
       id: Date.now(),
       title: input,
       completed: false,
-      listId: id,
+      listId: resolvedListId,
     };
 
     setSidebarState((prev) => ({
       ...prev,
       data: prev.data.map((item) =>
-        item.type === 'list' && item.id === id
+        item.type === 'list' && item.id === resolvedListId
           ? { ...item, todos: [...item.todos, newTodo] }
           : item
       ),
