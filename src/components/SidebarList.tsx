@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useTodoContext } from '../context/TodoContext'
 import type { List } from '../types/list'
 import type { Inbox } from '../types/inbox'
@@ -31,7 +31,15 @@ export default function SidebarList ( { obj }: Props) {
       return (
         <div className='sidebar-ul-no-folder del-btn-inbox'>
           <span className='no-folder-list-styling-span'></span>
-          <Link to={`/list/${id}`}>{name}</Link>
+          <NavLink
+            to={`/list/${id}`}
+            end
+            className={({ isActive }) =>
+              isActive ? 'sidebar-list active' : 'sidebar-list'
+            }
+          >
+            {name}
+          </NavLink>
         </div>
       );
     }
@@ -42,16 +50,24 @@ export default function SidebarList ( { obj }: Props) {
   function regularSidebar () {
     return (
       <div className='sidebar-ul-no-folder'>
-      <span className='no-folder-list-styling-span'></span>
-      <Link to={`/list/${id}`}>{name}</Link>
-      <button
-        className='del-btn'
-        onClick={() => deleteList(id)}
-      >
-        Delete
-      </button>
-    </div>
-    )
+        <span className='no-folder-list-styling-span'></span>
+        <NavLink
+          to={`/list/${id}`}
+          end
+          className={({ isActive }) =>
+            isActive ? 'sidebar-list active' : 'sidebar-list'
+          }
+        >
+          {name}
+        </NavLink>
+        <button
+          className='del-btn'
+          onClick={() => deleteList(id)}
+        >
+          Delete
+        </button>
+      </div>
+    );
   }
 
 
