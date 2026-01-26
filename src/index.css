@@ -73,7 +73,6 @@ html, body {
   flex: 0 0 20%;
   border-right: 0.5px solid aqua;
   padding-right: 1rem;
-  border: 1px solid red;
 }
 
 .lists-in-folder{
@@ -307,14 +306,22 @@ form{
   justify-content: center;
   gap: 2rem;
   width: 50%;
-  margin-left: 25%;
+  margin-left: 5%;
 }
 .full-form-div{
   display: flex;
+  align-items: center;
+}
+.folder-submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -6%;
 }
 
 .form-submit{
   margin-top: 5%;
+  margin-left: 10%;
 }
 
 /* Folder page*/
