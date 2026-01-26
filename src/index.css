@@ -311,7 +311,7 @@ form{
 .form-main-div{
   display: flex;
   gap: 2rem;
-  width: 30%;
+  width: 35%;
   margin-left: 10%;
   
 }
@@ -320,7 +320,7 @@ form{
 }
 
 #drop-down {
-  margin-left: 5rem;
+  margin-left: 1rem;
   margin-right: -5%;
 }
 
