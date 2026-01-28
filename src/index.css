@@ -394,3 +394,26 @@ form{
 }
 
 }
+
+@media ( max-width: 768px ) {
+  /* SideBar */
+
+#sidebar {
+  width: 40%;
+  padding-right: 1rem;
+}
+
+.sidebar-folder .sidebar-list{
+  white-space: nowrap;
+  margin-left: -5%;
+  margin-right: -2%;
+}
+
+#sidebar-folder-text{
+  margin-left: -5%;
+}
+.no-folder-list-styling-span{
+  width: 0rem;
+}
+
+}
