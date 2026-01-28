@@ -382,6 +382,10 @@ form{
   padding-right: 2rem;
 }
 
+.sidebar-folder .sidebar-list{
+  white-space: nowrap;
+}
+
 #sidebar-folder-text{
   margin-left: -5%;
 }
