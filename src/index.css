@@ -373,3 +373,20 @@ form{
     background-color: #f9f9f9;
   }
 }
+
+@media ( max-width: 1024px ) {
+  /* SideBar */
+
+#sidebar {
+  width: 40%;
+  padding-right: 2rem;
+}
+
+#sidebar-folder-text{
+  margin-left: -5%;
+}
+.no-folder-list-styling-span{
+  width: 0rem;
+}
+
+}

@@ -61,16 +61,19 @@ export default function SidebarFolder ( {obj, data}: Props) {
             className='sidebar-List-in-Folder'
             key={`${info.id}-${obj.id}`}
           >
-            <span className='sidebar-List-in-Folder-styling-span'></span>
-            <NavLink
-              to={`/list/${info.id}`}
-              end
-              className={({ isActive }) =>
-                isActive ? 'sidebar-list active' : 'sidebar-list'
-              }
-            >
-              <li className='listInFolder'>{info.name}</li>
-            </NavLink>
+            <span id='sidebar-folder-text'>
+              <span className='sidebar-List-in-Folder-styling-span'></span>
+
+              <NavLink
+                to={`/list/${info.id}`}
+                end
+                className={({ isActive }) =>
+                  isActive ? 'sidebar-list active' : 'sidebar-list'
+                }
+              >
+                <li className='listInFolder'>{info.name}</li>
+              </NavLink>
+            </span>
             <button
               className='del-btn'
               onClick={() => deleteList(info.id)}
