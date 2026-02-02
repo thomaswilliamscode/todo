@@ -311,9 +311,8 @@ form{
 .form-main-div{
   display: flex;
   gap: 2rem;
-  width: 35%;
-  margin-left: 10%;
-  
+  width: 50%;
+  margin-left: 5%;
 }
 .full-form-div{
   display: flex;
