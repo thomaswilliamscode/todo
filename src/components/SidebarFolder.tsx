@@ -1,7 +1,7 @@
 import type { Folder } from '../types/folder'
 import type { List } from '../types/list'
 import type { Inbox } from '../types/inbox'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useTodoContext } from '../context/TodoContext'
 
@@ -57,12 +57,27 @@ export default function SidebarFolder ( {obj, data}: Props) {
       // Only lists have folderId + are linkable as lists
       if (info.type === 'list' && info.folderId === obj.id) {
         return (
-          <div className='sidebar-List-in-Folder' key={`${info.id}-${obj.id}`}>
-            <span className='sidebar-List-in-Folder-styling-span'></span>
-            <Link to={`/list/${info.id}`}>
-              <li className='listInFolder'>{info.name}</li>
-            </Link>
-            <button className='del-btn' onClick={() => deleteList(info.id)}>
+          <div
+            className='sidebar-List-in-Folder'
+            key={`${info.id}-${obj.id}`}
+          >
+            <span id='sidebar-folder-text'>
+              <span className='sidebar-List-in-Folder-styling-span'></span>
+
+              <NavLink
+                to={`/list/${info.id}`}
+                end
+                className={({ isActive }) =>
+                  isActive ? 'sidebar-list active' : 'sidebar-list'
+                }
+              >
+                <li className='listInFolder'>{info.name}</li>
+              </NavLink>
+            </span>
+            <button
+              className='del-btn'
+              onClick={() => deleteList(info.id)}
+            >
               Delete
             </button>
           </div>
@@ -88,7 +103,15 @@ export default function SidebarFolder ( {obj, data}: Props) {
           ></i>
         )}
 
-        <Link to={`/folder/${id}`}>{name}</Link>
+        <NavLink
+          to={`/folder/${id}`}
+          end
+          className={({ isActive }) =>
+            isActive ? 'sidebar-list active' : 'sidebar-list'
+          }
+        >
+          {name}
+        </NavLink>
         <button
           className='del-btn'
           onClick={() => deleteFolder(id)}

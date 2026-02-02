@@ -95,6 +95,7 @@ html, body {
   display: block;
 }
 
+
 .sidebar-List-in-Folder {
   display: flex;
   align-items: center;
@@ -105,6 +106,9 @@ html, body {
   
   width: 2rem;
 }
+
+.sidebar-list { display: block; padding: .5rem 1rem; border-radius: 8px; }
+.sidebar-list.active { background: rgba(0,255,255,.15); }
 .del-btn{
   height: 2rem;
   padding-top: 0.25rem;
@@ -136,11 +140,15 @@ html, body {
   border-bottom: 1px solid white;
 }
 .sidebar-ul-no-folder{
-border-bottom: 1px solid white;
-display: flex;
+  border-bottom: 1px solid white;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
+}
+
+.sidebar-ul-no-folder:focus {
+  background-color: grey;
 }
 .no-folder-list-styling-span{
   width: 2rem;
@@ -303,7 +311,7 @@ form{
 .form-main-div{
   display: flex;
   gap: 2rem;
-  width: 30%;
+  width: 35%;
   margin-left: 10%;
   
 }
@@ -312,7 +320,7 @@ form{
 }
 
 #drop-down {
-  margin-left: 5rem;
+  margin-left: 1rem;
   margin-right: -5%;
 }
 
@@ -364,4 +372,21 @@ form{
   button {
     background-color: #f9f9f9;
   }
+}
+
+@media ( max-width: 1024px ) {
+  /* SideBar */
+
+#sidebar {
+  width: 40%;
+  padding-right: 2rem;
+}
+
+#sidebar-folder-text{
+  margin-left: -5%;
+}
+.no-folder-list-styling-span{
+  width: 0rem;
+}
+
 }
