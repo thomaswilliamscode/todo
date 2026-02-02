@@ -10,24 +10,7 @@ export default function AddFolderOrList () {
     type: 'list',
   })
 
-  function viewFolders () {
-    if (formState.type === 'list') {
-      return (
-        <div className='view-folders-div'>
-          <select
-            onChange={(e) =>
-              setFormState((s) => ({ ...s, folderId: Number(e.target.value) }))
-            }
-            name='folder'
-            id='folder'
-            className='form-select'
-          >
-            {listFoldersAsOptions()}
-          </select>
-        </div>
-      );
-    }
-  }
+
 
   function listFoldersAsOptions () {
     const folders = sidebarState.data.filter( (array) =>  {
@@ -155,7 +138,7 @@ export default function AddFolderOrList () {
               }
               placeholder='Title'
             />
-            <div>
+            <div className='add-form-options'>
               <input
                 type='radio'
                 value='list'
@@ -187,15 +170,33 @@ export default function AddFolderOrList () {
               <label htmlFor='folder'>Folder</label>
             </div>
           </div>
-          <span id='drop-down'>
-            {viewFolders()}
-          </span>
-          <button
-            className='form-submit'
-            type='submit'
-          >
-            Submit
-          </button>
+          <div className='folder-submit'>
+            <div
+              className={`dropdown-slot ${formState.type === 'list' ? 'open' : 'closed'}`}
+            >
+              <select
+                onChange={(e) =>
+                  setFormState((s) => ({
+                    ...s,
+                    folderId: Number(e.target.value),
+                  }))
+                }
+                name='folder'
+                id='folder'
+                className='form-select'
+              >
+                {listFoldersAsOptions()}
+              </select>
+            </div>
+            <span>
+              <button
+                className='form-submit'
+                type='submit'
+              >
+                Submit
+              </button>
+            </span>
+          </div>
         </div>
       </form>
     </>

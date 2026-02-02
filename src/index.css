@@ -95,6 +95,21 @@ html, body {
   display: block;
 }
 
+.dropdown-slot {
+  min-height: 44px; /* match your select height */
+}
+
+.dropdown-slot.closed {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.dropdown-slot.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 .sidebar-List-in-Folder {
   display: flex;
   align-items: center;
@@ -105,6 +120,9 @@ html, body {
   
   width: 2rem;
 }
+
+.sidebar-list { display: block; padding: .5rem 1rem; border-radius: 8px; }
+.sidebar-list.active { background: rgba(0,255,255,.15); }
 .del-btn{
   height: 2rem;
   padding-top: 0.25rem;
@@ -136,11 +154,15 @@ html, body {
   border-bottom: 1px solid white;
 }
 .sidebar-ul-no-folder{
-border-bottom: 1px solid white;
-display: flex;
+  border-bottom: 1px solid white;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
+}
+
+.sidebar-ul-no-folder:focus {
+  background-color: grey;
 }
 .no-folder-list-styling-span{
   width: 2rem;
@@ -303,16 +325,15 @@ form{
 .form-main-div{
   display: flex;
   gap: 2rem;
-  width: 30%;
-  margin-left: 10%;
-  
+  width: 50%;
+  margin-left: 5%;
 }
 .full-form-div{
   display: flex;
 }
 
 #drop-down {
-  margin-left: 5rem;
+  margin-left: 1rem;
   margin-right: -5%;
 }
 
@@ -364,4 +385,115 @@ form{
   button {
     background-color: #f9f9f9;
   }
+}
+
+@media ( max-width: 1024px ) {
+  /* SideBar */
+
+#sidebar {
+  width: 40%;
+  padding-right: 2rem;
+}
+
+.sidebar-folder .sidebar-list{
+  white-space: nowrap;
+}
+
+#sidebar-folder-text{
+  margin-left: -5%;
+}
+.no-folder-list-styling-span{
+  width: 0rem;
+}
+
+/* Add Todo Form */
+.folder-add-todo-form{
+  margin-left: -10%;
+}
+
+/* Add Folder Or List */
+
+.form-main-div{
+  height: 40px;
+  width: 70%;
+  margin-bottom: 10px;
+  margin-left: 0%;
+}
+
+.add-form-options{
+  width: 400px;
+}
+
+#drop-down{
+  width: 30%;
+}
+
+.form-submit{
+  margin-left: -20%;
+  margin-top: 10%;
+}
+
+}
+
+@media ( max-width: 768px ) {
+  /* SideBar */
+
+#sidebar {
+  width: 40%;
+  padding-right: 1rem;
+}
+
+.sidebar-folder .sidebar-list{
+  white-space: nowrap;
+  margin-left: -5%;
+  margin-right: -2%;
+}
+
+#sidebar-folder-text{
+  margin-left: -5%;
+}
+.no-folder-list-styling-span{
+  width: 0rem;
+}
+
+/* Add Todo Form */
+.folder-add-todo-form{
+  margin-left: -10%;
+}
+
+/* Add Folder Or List */
+
+
+
+.form-main-div{
+  height: 35px;
+  max-width: 70%;
+  margin-left: 0%;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.add-form-options{
+  width: 200px;
+  
+}
+.full-form-div {
+  align-items: flex-start;
+}
+#drop-down{
+  width: 30%;
+  
+}
+.folder-submit{
+  min-height: 60%;
+  min-width: 60%;
+}
+
+.form-submit{
+  margin-left: 0%;
+  margin-top: 5%;
+}
+
 }
