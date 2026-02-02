@@ -155,7 +155,7 @@ export default function AddFolderOrList () {
               }
               placeholder='Title'
             />
-            <div>
+            <div className='add-form-options'>
               <input
                 type='radio'
                 value='list'
