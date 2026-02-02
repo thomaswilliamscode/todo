@@ -10,24 +10,7 @@ export default function AddFolderOrList () {
     type: 'list',
   })
 
-  function viewFolders () {
-    if (formState.type === 'list') {
-      return (
-        <div className='view-folders-div'>
-          <select
-            onChange={(e) =>
-              setFormState((s) => ({ ...s, folderId: Number(e.target.value) }))
-            }
-            name='folder'
-            id='folder'
-            className='form-select'
-          >
-            {listFoldersAsOptions()}
-          </select>
-        </div>
-      );
-    }
-  }
+
 
   function listFoldersAsOptions () {
     const folders = sidebarState.data.filter( (array) =>  {
@@ -188,7 +171,23 @@ export default function AddFolderOrList () {
             </div>
           </div>
           <div className='folder-submit'>
-            {viewFolders()}
+            <div
+              className={`dropdown-slot ${formState.type === 'list' ? 'open' : 'closed'}`}
+            >
+              <select
+                onChange={(e) =>
+                  setFormState((s) => ({
+                    ...s,
+                    folderId: Number(e.target.value),
+                  }))
+                }
+                name='folder'
+                id='folder'
+                className='form-select'
+              >
+                {listFoldersAsOptions()}
+              </select>
+            </div>
             <span>
               <button
                 className='form-submit'

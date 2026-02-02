@@ -95,6 +95,20 @@ html, body {
   display: block;
 }
 
+.dropdown-slot {
+  min-height: 44px; /* match your select height */
+}
+
+.dropdown-slot.closed {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.dropdown-slot.open {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 .sidebar-List-in-Folder {
   display: flex;
@@ -449,25 +463,37 @@ form{
 
 /* Add Folder Or List */
 
+
+
 .form-main-div{
   height: 35px;
-  width: 70%;
+  max-width: 70%;
   margin-left: 0%;
+  gap: 1rem;
   display: flex;
   flex-direction: column;
+  
 }
 
 .add-form-options{
   width: 200px;
+  
 }
-
+.full-form-div {
+  align-items: flex-start;
+}
 #drop-down{
   width: 30%;
+  
+}
+.folder-submit{
+  min-height: 60%;
+  min-width: 60%;
 }
 
 .form-submit{
-  margin-left: -20%;
-  margin-top: 16%;
+  margin-left: 0%;
+  margin-top: 5%;
 }
 
 }
