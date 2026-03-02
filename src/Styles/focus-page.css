@@ -1,0 +1,31 @@
+/* Focus Page */
+#focus-btn-div{
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+#focus-btn-div button:hover{
+  background: #2b2b2b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid aqua;
+}
+
+#focus-add-task{
+  margin-left: 35%;
+  margin-top: 5%;
+}
+
+.del-btn-inbox{
+  padding-bottom: 2%;
+  margin-right: 35%;
+  margin-left: 40%;
+  padding-right: 5%;
+  margin-bottom: 5%;
+}
+
+#list-todo {
+  display: flex;
+  justify-content: center;
+}
