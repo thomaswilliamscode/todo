@@ -1,0 +1,27 @@
+/* Add Folder or List Page */
+form{
+  padding-top: 5%;
+}
+.form-main-div{
+  display: flex;
+  gap: 2rem;
+  width: 50%;
+  margin-left: 5%;
+}
+.full-form-div{
+  display: flex;
+}
+
+#drop-down {
+  margin-left: 1rem;
+  margin-right: -5%;
+}
+
+.form-submit{
+  margin-left: 5rem;
+}
+
+
+.form-input-and-add {
+  display: flex;
+}
