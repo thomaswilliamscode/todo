@@ -45,12 +45,15 @@
   width: 2rem;
 }
 
-.sidebar-list {
+.sidebar-list,
+.add-link {
   display: block;
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  text-align: center;
 }
-.sidebar-list.active {
+.sidebar-list.active,
+.add-link.active {
   background: rgba(0, 255, 255, 0.15);
 }
 .del-btn {
@@ -63,6 +66,7 @@
   margin-left: 40%;
   padding-bottom: -10%;
   padding: 2px 0px;
+  border: 1px solid red;
 }
 .sidebar-add {
   border-bottom: 2px solid white;
