@@ -138,7 +138,7 @@ export default function AddFolderOrList() {
                   })
                 }
               />
-              <label htmlFor="list"> Accomplishment </label>
+              <label htmlFor="list"> Milestone </label>
               <input
                 type="radio"
                 value="folder"
@@ -153,7 +153,7 @@ export default function AddFolderOrList() {
                 }
               />
 
-              <label htmlFor="folder"> Big Scary Goal </label>
+              <label htmlFor="folder"> Goal </label>
             </div>
           </div>
           <div className="folder-submit">
