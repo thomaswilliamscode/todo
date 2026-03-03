@@ -152,7 +152,7 @@ export default function AddFolderOrList () {
                   })
                 }
               />
-              <label htmlFor='list'>List</label>
+              <label htmlFor='list'>Milestone</label>
               <input
                 type='radio'
                 value='folder'
@@ -167,7 +167,7 @@ export default function AddFolderOrList () {
                 }
               />
 
-              <label htmlFor='folder'>Folder</label>
+              <label htmlFor='folder'>Mission</label>
             </div>
           </div>
           <div className='folder-submit'>
