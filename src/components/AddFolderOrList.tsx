@@ -1,59 +1,50 @@
-import { useTodoContext } from '../context/TodoContext'
-import { useState } from 'react'
-import type { FormType } from '../types/formType'
-import type { Todo } from '../types/todo'
+import { useTodoContext } from "../context/TodoContext";
+import { useState } from "react";
+import type { FormType } from "../types/formType";
+import type { Todo } from "../types/todo";
+import "../Styles/add-folder-or-list.css";
 
-export default function AddFolderOrList () {
-  const { sidebarState, setSidebarState } = useTodoContext()
-  const [ formState, setFormState ] = useState<FormType>({
-    title: '',
-    type: 'list',
-  })
+export default function AddFolderOrList() {
+  const { sidebarState, setSidebarState } = useTodoContext();
+  const [formState, setFormState] = useState<FormType>({
+    title: "",
+    type: "list",
+  });
 
-
-
-  function listFoldersAsOptions () {
-    const folders = sidebarState.data.filter( (array) =>  {
-      if ( array.type === 'folder') {
-        return array
+  function listFoldersAsOptions() {
+    const folders = sidebarState.data.filter((array) => {
+      if (array.type === "folder") {
+        return array;
       }
-    })
-    folders.unshift({type: 'list', name: 'none', id:0, todos: []})
-    const names = folders.map ((folder) => {
+    });
+    folders.unshift({ type: "list", name: "none", id: 0, todos: [] });
+    const names = folders.map((folder) => {
       return (
-        <option
-          value={`${folder.id}`}
-          key={`${folder.id}`}
-          
-        >
+        <option value={`${folder.id}`} key={`${folder.id}`}>
           {folder.name}
         </option>
       );
-      
-      
-    })
-  return names; 
-
+    });
+    return names;
   }
 
-  function createId (type: string): number {
-    if (type === 'list') {
-      const allLists = sidebarState.data.filter( (obj) => {
-        if (obj.type === 'list') {
-          return obj
+  function createId(type: string): number {
+    if (type === "list") {
+      const allLists = sidebarState.data.filter((obj) => {
+        if (obj.type === "list") {
+          return obj;
         }
-      })
-      const ids = allLists.map ( (list) => {
-        return list.id
-      })
-      const max = Math.max(...ids) 
+      });
+      const ids = allLists.map((list) => {
+        return list.id;
+      });
+      const max = Math.max(...ids);
 
       const id = max + 1;
-      return id
-    }
-    else if (type === 'folder') {
+      return id;
+    } else if (type === "folder") {
       const allLists = sidebarState.data.filter((obj) => {
-        if (obj.type === 'folder') {
+        if (obj.type === "folder") {
           return obj;
         }
       });
@@ -72,107 +63,104 @@ export default function AddFolderOrList () {
     e.preventDefault();
     type NewListItem = {
       id: number;
-      todos: Todo[]; 
-      type: 'list';
+      todos: Todo[];
+      type: "list";
       name: string;
-      folderId?: number
-    }
+      folderId?: number;
+    };
     type NewFolderItem = {
       id: number;
       open: boolean;
-      type: 'folder';
+      type: "folder";
       name: string;
       folderId: undefined;
-    }
+    };
 
     let newItem: NewListItem | NewFolderItem;
-    if (formState.type === 'list') {
+    if (formState.type === "list") {
       newItem = {
-        id: createId('list'),
+        id: createId("list"),
         todos: [],
-        type: 'list',
+        type: "list",
         name: formState.title,
         folderId: formState.folderId,
-      }
-      
+      };
     }
-    if (formState.type === 'folder') {
+    if (formState.type === "folder") {
       newItem = {
-        id: createId('folder'),
+        id: createId("folder"),
         open: false,
-        type: 'folder',
+        type: "folder",
         name: formState.title,
-        folderId: undefined
-      }
-      newItem.id = createId('folder');
+        folderId: undefined,
+      };
+      newItem.id = createId("folder");
       newItem.open = false;
       newItem.type = formState.type;
       newItem.name = formState.title;
       newItem.folderId = undefined;
     }
-    
 
-
-    setSidebarState( prev => ({
-      ...prev, 
-      data: [
-        ...prev.data, newItem
-      ]
-  }))
-  setFormState({
-    title: '',
-    type: 'list',
-  });
+    setSidebarState((prev) => ({
+      ...prev,
+      data: [...prev.data, newItem],
+    }));
+    setFormState({
+      title: "",
+      type: "list",
+    });
   }
   return (
     <>
       <form onSubmit={submit}>
-        <div className='full-form-div'>
-          <div className='form-main-div'>
+        <div className="full-form-div">
+          <div className="form-main-div">
             <input
-              type='text'
-              name='name'
+              type="text"
+              name="name"
               value={formState.title}
               onChange={(e) =>
                 setFormState({ ...formState, title: e.target.value })
               }
-              placeholder='Title'
+              placeholder="Title"
             />
-            <div className='add-form-options'>
+            <div className="add-form-options">
               <input
-                type='radio'
-                value='list'
-                id='list'
-                name='type'
-                checked={formState.type === 'list'}
+                type="radio"
+                value="list"
+                id="list"
+                name="type"
+                checked={formState.type === "list"}
                 onChange={(e) =>
                   setFormState({
                     ...formState,
-                    type: e.target.value as FormType['type'],
+                    type: e.target.value as FormType["type"],
                   })
                 }
               />
-              <label htmlFor='list'>List</label>
+              <label htmlFor="list"> Milestone </label>
               <input
-                type='radio'
-                value='folder'
-                id='folder'
-                name='type'
-                checked={formState.type === 'folder'}
+                type="radio"
+                value="folder"
+                id="folder"
+                name="type"
+                checked={formState.type === "folder"}
                 onChange={(e) =>
                   setFormState({
                     ...formState,
-                    type: e.target.value as FormType['type'],
+                    type: e.target.value as FormType["type"],
                   })
                 }
               />
 
-              <label htmlFor='folder'>Folder</label>
+              <label htmlFor="folder"> Goal </label>
             </div>
           </div>
-          <div className='folder-submit'>
+          <div className="folder-submit">
             <div
-              className={`dropdown-slot ${formState.type === 'list' ? 'open' : 'closed'}`}
+              className={`dropdown-slot ${
+                formState.type === "list" ? "open" : "closed"
+              }`}
             >
               <select
                 onChange={(e) =>
@@ -181,18 +169,15 @@ export default function AddFolderOrList () {
                     folderId: Number(e.target.value),
                   }))
                 }
-                name='folder'
-                id='folder'
-                className='form-select'
+                name="folder"
+                id="folder"
+                className="form-select"
               >
                 {listFoldersAsOptions()}
               </select>
             </div>
             <span>
-              <button
-                className='form-submit'
-                type='submit'
-              >
+              <button className="form-submit" type="submit">
                 Submit
               </button>
             </span>

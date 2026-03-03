@@ -1,0 +1,14 @@
+.hidden-message {
+  opacity: 1;
+  transition: opacity 1s ease;
+  text-align: center;
+}
+
+.focus {
+  text-align: center;
+  padding-left: 5%;
+}
+
+.hidden-message.fade {
+  opacity: 0;
+}

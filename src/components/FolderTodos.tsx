@@ -1,25 +1,25 @@
-import { useContext } from 'react'
-import AddTodoForm from './AddTodoForm'
-import { TodoContext } from '../context/TodoContext'
-import type { List } from '../types/list'
-import type { Todo } from '../types/todo'
+import { useContext } from "react";
+import AddTodoForm from "./AddTodoForm";
+import { TodoContext } from "../context/TodoContext";
+import type { List } from "../types/list";
+import type { Todo } from "../types/todo";
 
 type Props = {
   data: List;
-}
+};
 
 export default function FolderTodos({ data }: Props) {
   const todoContext = useContext(TodoContext);
-    if (!todoContext) {
-      throw new Error('TodoContext is undefined');
-    }
-    const { sidebarState, setSidebarState } = todoContext;
-    const { id, type } = data
+  if (!todoContext) {
+    throw new Error("TodoContext is undefined");
+  }
+  const { sidebarState, setSidebarState } = todoContext;
+  const { id, type } = data;
 
   function todoDelete(todoObj: Todo, listData: List) {
     const newData = sidebarState.data.map((objItem) => {
       // Only lists have `todos`
-      if (objItem.type === 'list' && objItem.id === listData.id) {
+      if (objItem.type === "list" && objItem.id === listData.id) {
         const todoArrayMap = objItem.todos.map((insideTodoObj) => {
           if (todoObj.id === insideTodoObj.id) {
             return { ...insideTodoObj, completed: true };
@@ -43,10 +43,15 @@ export default function FolderTodos({ data }: Props) {
     const display = listData.todos
       .filter((t) => !t.completed)
       .map((t) => (
-        <li key={`${t.id}`} className='folder-todos todoItem'>
+        <li key={`${t.id}`} className="folder-todos todoItem">
           <span></span>
           <span>{t.title}</span>
-          <button onClick={() => todoDelete(t, listData)}>Delete</button>
+          <button
+            className="del-btn-main"
+            onClick={() => todoDelete(t, listData)}
+          >
+            Delete
+          </button>
         </li>
       ));
 
@@ -55,11 +60,11 @@ export default function FolderTodos({ data }: Props) {
 
   return (
     <div>
-      <div className='folder-name-and-add-container'>
-        <h3 className='folder-todo-title'>{data.name}</h3>
+      <div className="folder-name-and-add-container">
+        <h3 className="folder-todo-title">{data.name}</h3>
         <AddTodoForm id={id} type={type} />
       </div>
-      <ul className='folder-ul'>{displayTodos(data)}</ul>
+      <ul className="folder-ul">{displayTodos(data)}</ul>
     </div>
   );
 }

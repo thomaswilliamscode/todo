@@ -24,149 +24,6 @@ html, body {
 
 
 
-/* Layout */
-
-#layout {
-  display: flex;
-  width: 100%;
-  margin-left: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
-  flex-wrap: wrap; /* allow header to take its own row */
-  align-items: stretch;
-}
-
-/* Focus Page */
-#focus-btn-div{
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding-top: 1rem;
-}
-#focus-btn-div button:hover{
-  background: #2b2b2b;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-  border: 1px solid aqua;
-}
-
-#focus-add-task{
-  margin-left: 35%;
-  margin-top: 5%;
-}
-
-.del-btn-inbox{
-  padding-bottom: 2%;
-  margin-right: 35%;
-  margin-left: 40%;
-  padding-right: 5%;
-  margin-bottom: 5%;
-}
-
-#list-todo {
-  display: flex;
-  justify-content: center;
-}
-
-
-/* SideBar */
-
-#sidebar {
-  width: 20%;
-  flex: 0 0 20%;
-  border-right: 0.5px solid aqua;
-  padding-right: 1rem;
-}
-
-.lists-in-folder{
-  margin-top: 1%;
-  
-  
-}
-.listInFolder{
-  list-style: none;
-  
-}
-
-.hidden{
-  display: none;
-}
-.visible {
-  display: block;
-}
-
-.dropdown-slot {
-  min-height: 44px; /* match your select height */
-}
-
-.dropdown-slot.closed {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.dropdown-slot.open {
-  visibility: visible;
-  opacity: 1;
-}
-
-
-.sidebar-List-in-Folder {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid Aquamarine;
-}
-.sidebar-List-in-Folder-styling-span{
-  
-  width: 2rem;
-}
-
-.sidebar-list { display: block; padding: .5rem 1rem; border-radius: 8px; }
-.sidebar-list.active { background: rgba(0,255,255,.15); }
-.del-btn{
-  height: 2rem;
-  padding-top: 0.25rem;
-  
-}
-#inbox{
-  border-bottom: 2px solid white;
-  width: 25%;
-  margin-left: 40%;
-  padding-bottom: -10%;
-  padding: 2px 0px;
-}
-.sidebar-add{
-  border-bottom: 2px solid white;
-  width: 25%;
-  margin-left: 40%;
-  padding: 2px 0px;
-  margin-bottom: 0.5rem;
-}
-
-#add-link{
-  padding-left: 1.25rem;
-}
-
-.sidebar-folder{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid white;
-}
-.sidebar-ul-no-folder{
-  border-bottom: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-}
-
-.sidebar-ul-no-folder:focus {
-  background-color: grey;
-}
-.no-folder-list-styling-span{
-  width: 2rem;
-}
 
 /* Main */
 #main {
@@ -183,27 +40,7 @@ html, body {
   margin-top: 0;
   padding: 0;
 }
-/* Header */
 
-.header {
-  display: flex;
-  height: 100px;
-  width: 100%;
-  flex: 0 0 100%; /* take full row inside #layout */
-  align-items: center;
-  justify-content: center;
-}
-
-.header ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8rem;
-  list-style: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
 
 .add-input {
   margin-left: 15%;
@@ -234,55 +71,6 @@ html, body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* List items Styles */
-
-.todo-title{
-  margin-bottom: 0;
-}
-
-.todoItem, .drip-feed-item {
-  background: rgba(45, 143, 133, 0.25);
-  backdrop-filter: blur(8px);
-  border-radius: 9999px;
-  padding: 12px 20px;
-  margin: 12px auto;
-  max-width: 1200px;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  font-weight: 500;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.todoItem:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-.todoItem span {
-  padding-right: 12px;
-  text-align: left;
-}
-
-.todoItem button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 50%;
-  transition: background 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.todoItem button:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
 
 a {
   font-weight: 500;
@@ -318,61 +106,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Add Folder or List Page */
-form{
-  padding-top: 5%;
-}
-.form-main-div{
-  display: flex;
-  gap: 2rem;
-  width: 50%;
-  margin-left: 5%;
-}
-.full-form-div{
-  display: flex;
-}
 
-#drop-down {
-  margin-left: 1rem;
-  margin-right: -5%;
-}
-
-.form-submit{
-  margin-left: 5rem;
-}
-
-/* Folder page*/
-
-.title{
-  display: flex;
-  justify-content: center;
-}
-
-.folder-name-and-add-container{
-  display: flex;
-  justify-content: center;
-}
-
-.folder-todo-title{
-  display: flex;
-  flex-direction: row;
-  width: 20%;
-}
-
-.folder-add-todo-form{
-  width: 30%;
-  justify-content: center;
-  padding-top: 0%;
-  margin: auto 0;
-}
-
-.folder-ul{
-  border-bottom: 1px solid gray;
-  padding-bottom: 5%;
-}
-.form-input-and-add {
-  display: flex;
-}
 
 @media (prefers-color-scheme: light) {
   :root {

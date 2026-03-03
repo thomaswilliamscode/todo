@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useTodoContext } from '../context/TodoContext'
 import FolderTodos from './FolderTodos'
 import type { List } from '../types/list'
+import '../Styles/folder-page.css'
 
 export default function FolderPage () {
   const { sidebarState } = useTodoContext()
