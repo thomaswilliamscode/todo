@@ -5,10 +5,14 @@ import "../Styles/add-todo-form.css";
 type Props = {
   id?: number;
   type?: string;
+  mode?: "Focus";
 };
 
-export default function AddToDoForm({ id }: Props) {
+export default function AddToDoForm({ id, mode }: Props) {
   const [input, setInput] = useState("");
+  const [showMessage, setshowMessage] = useState(false);
+  const [message, setMessage] = useState(`added ${input}`);
+  const [fadeOut, setFadeOut] = useState(false);
   const { setSidebarState } = useTodoContext();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -36,11 +40,23 @@ export default function AddToDoForm({ id }: Props) {
       ),
     }));
 
+    if (mode === "Focus") {
+      setMessage(`Added ${input}`); // store current message
+      setshowMessage(true);
+      setFadeOut(false); // start fully visible
+
+      setTimeout(() => setFadeOut(true), 1500); // fade begins
+      setTimeout(() => setshowMessage(false), 2500); // remove after fade
+    }
+
     setInput("");
   }
 
   return (
-    <form onSubmit={handleSubmit} className="folder-add-todo-form">
+    <form
+      onSubmit={handleSubmit}
+      className={`folder-add-todo-form ${mode === "Focus" ? "focus" : ""}`}
+    >
       <div className="form-input-and-add">
         <input
           className="add-input"
@@ -53,6 +69,11 @@ export default function AddToDoForm({ id }: Props) {
           Add
         </button>
       </div>
+      {showMessage && (
+        <div className={`hidden-message ${fadeOut ? "fade" : ""}`}>
+          <p>{message}</p>
+        </div>
+      )}
     </form>
   );
 }

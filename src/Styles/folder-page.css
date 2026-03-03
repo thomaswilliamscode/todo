@@ -1,29 +1,29 @@
 /* Folder page*/
 
-.title{
+.title {
   display: flex;
   justify-content: center;
 }
 
-.folder-name-and-add-container{
+.folder-name-and-add-container {
   display: flex;
   justify-content: center;
 }
 
-.folder-todo-title{
+.folder-todo-title {
   display: flex;
   flex-direction: row;
   width: 20%;
 }
 
-.folder-add-todo-form{
+.folder-add-todo-form {
   width: 30%;
   justify-content: center;
   padding-top: 0%;
   margin: auto 0;
 }
 
-.folder-ul{
+.folder-ul {
   border-bottom: 1px solid gray;
   padding-bottom: 5%;
 }
