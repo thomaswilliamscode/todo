@@ -7,17 +7,14 @@
   padding-right: 1rem;
 }
 
-.lists-in-folder{
+.lists-in-folder {
   margin-top: 1%;
-  
-  
 }
-.listInFolder{
+.listInFolder {
   list-style: none;
-  
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 .visible {
@@ -38,33 +35,40 @@
   opacity: 1;
 }
 
-
 .sidebar-List-in-Folder {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid Aquamarine;
 }
-.sidebar-List-in-Folder-styling-span{
-  
+.sidebar-List-in-Folder-styling-span {
   width: 2rem;
 }
 
-.sidebar-list { display: block; padding: .5rem 1rem; border-radius: 8px; }
-.sidebar-list.active { background: rgba(0,255,255,.15); }
-.del-btn{
+.sidebar-list,
+.add-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.sidebar-list.active,
+.add-link.active {
+  background: rgba(0, 255, 255, 0.15);
+}
+.del-btn {
   height: 2rem;
   padding-top: 0.25rem;
-  
 }
-#inbox{
+#inbox {
   border-bottom: 2px solid white;
   width: 25%;
   margin-left: 40%;
   padding-bottom: -10%;
   padding: 2px 0px;
+  border: 1px solid red;
 }
-.sidebar-add{
+.sidebar-add {
   border-bottom: 2px solid white;
   width: 25%;
   margin-left: 40%;
@@ -72,27 +76,30 @@
   margin-bottom: 0.5rem;
 }
 
-#add-link{
+#add-link {
   padding-left: 1.25rem;
 }
 
-.sidebar-folder{
+.sidebar-folder {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid white;
 }
-.sidebar-ul-no-folder{
+.sidebar-ul-no-folder {
   border-bottom: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .sidebar-ul-no-folder:focus {
   background-color: grey;
 }
-.no-folder-list-styling-span{
+.no-folder-list-styling-span {
   width: 2rem;
+}
+#sidebar-folder-text {
+  width: 80%;
+  text-align: center;
 }

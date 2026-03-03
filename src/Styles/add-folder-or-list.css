@@ -1,15 +1,17 @@
 /* Add Folder or List Page */
-form{
+form {
   padding-top: 5%;
 }
-.form-main-div{
+.form-main-div {
   display: flex;
   gap: 2rem;
   width: 50%;
   margin-left: 5%;
 }
-.full-form-div{
+.full-form-div {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 #drop-down {
@@ -17,11 +19,14 @@ form{
   margin-right: -5%;
 }
 
-.form-submit{
+.form-submit {
   margin-left: 5rem;
 }
 
-
 .form-input-and-add {
+  display: flex;
+}
+
+.folder-submit {
   display: flex;
 }

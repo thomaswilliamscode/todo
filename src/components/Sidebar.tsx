@@ -1,17 +1,23 @@
-import SidebarFoldersAndLists from './SidebarFoldersAndLists'
-import { Link } from 'react-router-dom'
+import SidebarFoldersAndLists from "./SidebarFoldersAndLists";
+import { Link } from "react-router-dom";
+import "../Styles/sidebar.css";
 
-export default function Sidebar () {
+import { useState } from "react";
+
+export default function Sidebar() {
+  const [isActive, setisActive] = useState(false);
+
+  function toggleActive() {
+    if (isActive) {
+      setisActive(false);
+    } else {
+      setisActive(true);
+    }
+  }
+
   return (
-    <div id='sidebar'>
-      <div id='sidebar-top'>
-      </div>
-      <div id='sidebar-bottom'>
-        <div className='sidebar-add'>
-          <Link id='add-link' to='/add'>Add</Link>
-        </div>
-        <SidebarFoldersAndLists />
-      </div>
+    <div id="sidebar">
+      <SidebarFoldersAndLists />
     </div>
   );
 }

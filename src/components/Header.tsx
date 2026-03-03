@@ -1,18 +1,18 @@
-import { Link } from 'react-router-dom';
-
-export default function Header () {
+import { Link } from "react-router-dom";
+import "../Styles/header.css";
+export default function Header() {
   return (
-    <header className='container'>
-      <nav className='header'>
+    <header className="container">
+      <nav className="header">
         <ul>
           <li>
-            <Link to='/'>Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to='/dripfeed'>Focus Mode</Link>
+            <Link to="/dripfeed">Focus Mode</Link>
           </li>
         </ul>
       </nav>
     </header>
-  ); 
+  );
 }

@@ -133,7 +133,8 @@ export default function DripFeedPage() {
         </div>
       </div>
       <div id="focus-add-task">
-        <AddTodoForm />
+        <AddTodoForm mode="Focus" />
+        <p className="hidden-message"></p>
       </div>
     </div>
   );
