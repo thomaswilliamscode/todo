@@ -1,10 +1,11 @@
 /* List items Styles */
 
-.todo-title{
+.todo-title {
   margin-bottom: 0;
 }
 
-.todoItem, .drip-feed-item {
+.todoItem,
+.drip-feed-item {
   background: rgba(45, 143, 133, 0.25);
   backdrop-filter: blur(8px);
   border-radius: 9999px;
@@ -36,8 +37,6 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
-  border-radius: 50%;
   transition: background 0.2s ease;
   display: flex;
   align-items: center;
@@ -46,4 +45,9 @@
 
 .todoItem button:hover {
   background-color: rgba(255, 255, 255, 0.15);
+}
+
+.todoItem .del-btn-main {
+  border-radius: 14.5px;
+  padding: 10px 20px;
 }

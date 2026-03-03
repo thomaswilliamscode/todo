@@ -57,7 +57,9 @@ export default function TodoList() {
           <li className="todoItem">
             <span></span>
             {obj.title}
-            <button onClick={() => todoDelete(obj.id)}>Delete</button>
+            <button className="del-btn-main" onClick={() => todoDelete(obj.id)}>
+              Delete
+            </button>
           </li>
         </div>
       );
