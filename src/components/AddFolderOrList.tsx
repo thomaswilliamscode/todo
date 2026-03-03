@@ -2,6 +2,7 @@ import { useTodoContext } from '../context/TodoContext'
 import { useState } from 'react'
 import type { FormType } from '../types/formType'
 import type { Todo } from '../types/todo'
+import '../Styles/add-folder-or-list.css'
 
 export default function AddFolderOrList () {
   const { sidebarState, setSidebarState } = useTodoContext()

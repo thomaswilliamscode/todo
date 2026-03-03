@@ -1,5 +1,6 @@
 import SidebarFoldersAndLists from './SidebarFoldersAndLists'
 import { Link } from 'react-router-dom'
+import '../Styles/sidebar.css'
 
 export default function Sidebar () {
   return (
