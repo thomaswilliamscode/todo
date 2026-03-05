@@ -1,18 +1,22 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react"; 
+import { useContext } from "react";
 import { TodoContext } from "../context/TodoContext";
 import "../Styles/header.css";
 export default function Header() {
-  const {focus} from useContext(TodoContext)
+  const { focus, setFocus } = useContext(TodoContext);
   return (
     <header className="container">
       <nav className="header">
         <ul>
-          <li>
-            <Link to="/">Home</Link>
+          <li className={`${focus === "home" ? "active-header" : ""}`}>
+            <Link to="/" onClick={() => setFocus("home")}>
+              Home
+            </Link>
           </li>
-          <li>
-            <Link to="/dripfeed">Focus Mode</Link>
+          <li className={`${focus === "focus" ? "active-header" : ""}`}>
+            <Link to="/dripfeed" onClick={() => setFocus("focus")}>
+              Focus Mode
+            </Link>
           </li>
         </ul>
       </nav>
