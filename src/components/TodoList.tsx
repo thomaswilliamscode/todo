@@ -12,6 +12,7 @@ export default function TodoList() {
     throw new Error("TodoContext is undefined");
   }
   const { sidebarState, setSidebarState } = todoContext;
+  console.log(sidebarState);
   const { id } = useParams();
   const listId = id;
   let title = "test";
