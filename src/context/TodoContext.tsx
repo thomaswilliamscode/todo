@@ -8,7 +8,7 @@ type FocusArea = "home" | "sidebar" | "focus" | null;
 export interface TodoContextType {
   sidebarState: StateData;
   setSidebarState: React.Dispatch<React.SetStateAction<StateData>>;
-  deleteTodo: (id: number) => void;
+  deleteTodo: (id: string) => void;
   currentTask: Todo | null;
   setCurrentTask: React.Dispatch<React.SetStateAction<Todo | null>>;
   focus: FocusArea;
