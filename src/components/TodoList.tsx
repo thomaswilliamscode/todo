@@ -13,10 +13,10 @@ export default function TodoList() {
   }
   const { sidebarState, setSidebarState } = todoContext;
   const { id } = useParams();
-  const listId = id ? Number(id) : undefined;
+  const listId = id;
   let title = "test";
 
-  function todoDelete(passedId: number) {
+  function todoDelete(passedId: string) {
     const newMap = sidebarState.data.map((obj) => {
       if (obj.type === "list" && obj.id === listId) {
         const newTodos = obj.todos.filter((t: Todo) => t.id !== passedId);
@@ -71,7 +71,7 @@ export default function TodoList() {
     <div>
       <h1 className="title">{title}</h1>
       <div id="list-todo">
-        <AddTodoForm id={listId} type={"list"} />
+        <AddTodoForm id={listId ?? ""} type="list" />
       </div>
 
       <ul>{listItem()}</ul>

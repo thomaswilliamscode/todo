@@ -4,7 +4,7 @@ import "../Styles/add-todo-form.css";
 import { v4 as uuidv4 } from "uuid";
 
 type Props = {
-  id?: number;
+  id?: string;
   type?: string;
   mode?: "Focus";
 };
@@ -31,7 +31,7 @@ export default function AddToDoForm({ id, mode }: Props) {
 
     // Focus Mode may render this form without an explicit list id.
     // Default to Inbox (id 0).
-    const resolvedListId = id ?? 0;
+    const resolvedListId = id ?? '0';
 
     const newTodo = {
       id: uuidv4(),

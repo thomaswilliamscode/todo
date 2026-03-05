@@ -18,7 +18,7 @@ export default function SidebarFolder({ obj, data }: Props) {
   const [isOpen, setIsOpen] = useState(obj.open);
   const { sidebarState, setSidebarState } = useTodoContext();
 
-  function deleteFolder(idOfFolder: number) {
+  function deleteFolder(idOfFolder: string) {
     // remove the folder itself
     const withoutFolder = sidebarState.data.filter(
       (item) => !(item.type === "folder" && item.id === idOfFolder)
@@ -27,7 +27,7 @@ export default function SidebarFolder({ obj, data }: Props) {
     // any lists that were inside this folder get moved to "none" (folderId 0)
     const remapped = withoutFolder.map((item) => {
       if (item.type === "list" && item.folderId === idOfFolder) {
-        return { ...item, folderId: 0 };
+        return { ...item, folderId: undefined };
       }
       return item;
     });
@@ -38,7 +38,7 @@ export default function SidebarFolder({ obj, data }: Props) {
     }));
   }
 
-  function deleteList(idToDelete: number) {
+  function deleteList(idToDelete: string) {
     const filteredState = sidebarState.data.filter(
       (item) => !(item.type === "list" && item.id === idToDelete)
     );

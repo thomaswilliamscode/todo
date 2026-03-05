@@ -14,7 +14,7 @@ export default function SidebarList({ obj }: Props) {
   const { name, id } = obj;
   const { sidebarState, setSidebarState } = useTodoContext();
 
-  function deleteList(id: number) {
+  function deleteList(id: string) {
     const filteredState = sidebarState.data.filter(
       (item) => !(item.type === "list" && item.id === id)
     );
@@ -25,8 +25,8 @@ export default function SidebarList({ obj }: Props) {
     }));
   }
 
-  function lookForInbox(id: number) {
-    if (id === 0) {
+  function lookForInbox(id: string) {
+    if (id === '0') {
       return (
         <div className="sidebar-ul-no-folder del-btn-inbox">
           <span className="no-folder-list-styling-span"></span>
@@ -66,5 +66,5 @@ export default function SidebarList({ obj }: Props) {
     );
   }
 
-  return <>{id === 0 ? lookForInbox(id) : regularSidebar()}</>;
+  return <>{id === '0' ? lookForInbox(id) : regularSidebar()}</>;
 }

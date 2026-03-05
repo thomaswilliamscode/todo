@@ -23,8 +23,7 @@ export default function Layout() {
     localStorage.setItem("sidebarState", JSON.stringify(sidebarState));
   }, [sidebarState]);
 
-  function handleDelete(id: number) {
-    console.log("id: ", id);
+  function handleDelete(id: string) {
     const updatedTodos = sidebarState.data.filter((obj) => {
       if (obj.id === id && obj.type === "list") {
         return false;

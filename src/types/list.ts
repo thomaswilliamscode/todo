@@ -1,9 +1,9 @@
-import type {Todo} from './todo'
+import type { Todo } from "./todo";
 
 export interface List {
-  type: 'list';
-  id: number; 
-  name: string; 
-  folderId?: number;
+  type: "list";
+  id: string;
+  name: string;
+  folderId?: string;
   todos: Todo[];
 }
