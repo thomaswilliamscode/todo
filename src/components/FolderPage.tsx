@@ -1,22 +1,23 @@
-import { useParams } from 'react-router-dom'
-import { useTodoContext } from '../context/TodoContext'
-import FolderTodos from './FolderTodos'
-import type { List } from '../types/list'
-import '../Styles/folder-page.css'
+import { useParams } from "react-router-dom";
+import { useTodoContext } from "../context/TodoContext";
+import FolderTodos from "./FolderTodos";
+import type { List } from "../types/list";
+import "../Styles/folder-page.css";
 
-export default function FolderPage () {
-  const { sidebarState } = useTodoContext()
+export default function FolderPage() {
+  const { sidebarState } = useTodoContext();
   const { id } = useParams();
 
-  const folderNumber = Number(id);
+  const folderId = id;
 
-  
   const folder = sidebarState.data.find(
-    (obj) => obj.type === 'folder' && obj.id === folderNumber
+    (obj) => obj.type === "folder" && obj.id === folderId
   );
+
   const lists = sidebarState.data.filter(
-    (obj): obj is List => obj.type === 'list' && obj.folderId === folderNumber
+    (obj): obj is List => obj.type === "list" && obj.folderId === folderId
   );
+
   const output = lists.map((obj) => {
     return (
       <div key={obj.id}>
@@ -24,13 +25,13 @@ export default function FolderPage () {
       </div>
     );
   });
-  const title = folder?.name ?? 'Folder';
+
+  const title = folder?.name ?? "Folder";
 
   return (
     <>
-      <h1 className='title'>{title}</h1>
+      <h1 className="title">{title}</h1>
       {output}
-
     </>
-  )
+  );
 }
