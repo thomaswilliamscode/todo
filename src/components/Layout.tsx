@@ -38,9 +38,7 @@ export default function Layout() {
     console.log(sidebarState);
   }
 
-  const [focus, setFocus] = useState<"header" | "sidebar" | "main" | null>(
-    null
-  );
+  const [focus, setFocus] = useState<"home" | "sidebar" | "focus" | null>(null);
 
   return (
     <>
@@ -55,9 +53,9 @@ export default function Layout() {
           setFocus,
         }}
       >
-        <Header onClick={() => setFocus("header")} />
+        <Header />
         <div id="layout">
-          <Sidebar onClick={() => setFocus("sidebar")} />
+          <Sidebar />
           <main id="main">
             <Outlet />
           </main>

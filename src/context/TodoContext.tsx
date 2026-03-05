@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 import type { StateData } from "../types/state-data";
 import type { Todo } from "../types/todo";
 
-type FocusArea = "header" | "sidebar" | "main" | null;
+type FocusArea = "home" | "sidebar" | "focus" | null;
 
 export interface TodoContextType {
   sidebarState: StateData;
