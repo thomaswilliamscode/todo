@@ -38,6 +38,10 @@ export default function Layout() {
     console.log(sidebarState);
   }
 
+  const [focus, setFocus] = useState<"header" | "sidebar" | "main" | null>(
+    null
+  );
+
   return (
     <>
       <TodoContext.Provider
@@ -47,11 +51,13 @@ export default function Layout() {
           deleteTodo: handleDelete,
           currentTask,
           setCurrentTask,
+          focus,
+          setFocus,
         }}
       >
-        <Header />
+        <Header onClick={() => setFocus("header")} />
         <div id="layout">
-          <Sidebar />
+          <Sidebar onClick={() => setFocus("sidebar")} />
           <main id="main">
             <Outlet />
           </main>
