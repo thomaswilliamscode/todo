@@ -1,7 +1,6 @@
 import { useTodoContext } from "../context/TodoContext";
 import { useState } from "react";
 import type { FormType } from "../types/formType";
-import type { Todo } from "../types/todo";
 import { v4 as uuidv4 } from "uuid";
 import "../Styles/add-folder-or-list.css";
 
@@ -31,7 +30,7 @@ export default function AddFolderOrList() {
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    let newItem;
+    let newItem: any;
 
     if (formState.type === "list") {
       newItem = {
@@ -47,7 +46,7 @@ export default function AddFolderOrList() {
         open: false,
         type: "folder",
         name: formState.title,
-        folderId: string,
+        folderId: formState.folderId || undefined,
       };
     }
 
