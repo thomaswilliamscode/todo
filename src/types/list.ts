@@ -4,6 +4,6 @@ export interface List {
   type: "list";
   id: string;
   name: string;
-  folderId?: number;
+  folderId?: string;
   todos: Todo[];
 }
