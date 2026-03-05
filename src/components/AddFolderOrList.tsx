@@ -1,7 +1,6 @@
 import { useTodoContext } from "../context/TodoContext";
 import { useState } from "react";
 import type { FormType } from "../types/formType";
-import type { Todo } from "../types/todo";
 import { v4 as uuidv4 } from "uuid";
 import "../Styles/add-folder-or-list.css";
 
@@ -15,35 +14,23 @@ export default function AddFolderOrList() {
   function listFoldersAsOptions() {
     const folders = sidebarState.data.filter((item) => item.type === "folder");
 
-    // Add "none" option at the top
-    folders.unshift({ type: "list", name: "none", id: "0", todos: [] });
+    return (
+      <>
+        <option value="">none</option>
 
-    return folders.map((folder) => (
-      <option value={folder.id} key={folder.id}>
-        {folder.name}
-      </option>
-    ));
+        {folders.map((folder) => (
+          <option value={folder.id} key={folder.id}>
+            {folder.name}
+          </option>
+        ))}
+      </>
+    );
   }
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    type NewListItem = {
-      id: string; // ✅ UUID
-      todos: Todo[];
-      type: "list";
-      name: string;
-      folderId?: number;
-    };
-    type NewFolderItem = {
-      id: string; // ✅ UUID
-      open: boolean;
-      type: "folder";
-      name: string;
-      folderId: undefined;
-    };
-
-    let newItem: NewListItem | NewFolderItem;
+    let newItem: any;
 
     if (formState.type === "list") {
       newItem = {
@@ -51,7 +38,7 @@ export default function AddFolderOrList() {
         todos: [],
         type: "list",
         name: formState.title,
-        folderId: formState.folderId,
+        folderId: formState.folderId || undefined,
       };
     } else if (formState.type === "folder") {
       newItem = {
@@ -59,7 +46,7 @@ export default function AddFolderOrList() {
         open: false,
         type: "folder",
         name: formState.title,
-        folderId: undefined,
+        folderId: formState.folderId || undefined,
       };
     }
 
@@ -131,7 +118,7 @@ export default function AddFolderOrList() {
                 onChange={(e) =>
                   setFormState((s) => ({
                     ...s,
-                    folderId: Number(e.target.value),
+                    folderId: e.target.value || undefined,
                   }))
                 }
                 name="folder"
