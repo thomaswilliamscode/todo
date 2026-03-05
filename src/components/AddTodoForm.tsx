@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTodoContext } from "../context/TodoContext";
 import "../Styles/add-todo-form.css";
+import { v4 as uuidv4 } from "uuid";
 
 type Props = {
   id?: number;
@@ -15,16 +16,12 @@ export default function AddToDoForm({ id, mode }: Props) {
   const [fadeOut, setFadeOut] = useState(false);
   const { setSidebarState } = useTodoContext();
 
-  function test(data) {
-    // split words into
-    let words = data.split(" ");
-    let capitalized = words.map((word: string) => {
-      let cap = word[0].toUpperCase();
-      return cap + word.slice(1);
-    });
-    // put words back together
-    console.log(capitalized.join(" "));
-    return capitalized.join(" ");
+  function test(data: string): string {
+    return data
+      .split(" ")
+      .filter(Boolean) // remove empty strings
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -37,7 +34,7 @@ export default function AddToDoForm({ id, mode }: Props) {
     const resolvedListId = id ?? 0;
 
     const newTodo = {
-      id: Date.now(),
+      id: uuidv4(),
       title: test(input),
       completed: false,
       listId: resolvedListId,

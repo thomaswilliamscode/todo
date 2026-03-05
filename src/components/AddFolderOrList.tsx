@@ -2,6 +2,7 @@ import { useTodoContext } from "../context/TodoContext";
 import { useState } from "react";
 import type { FormType } from "../types/formType";
 import type { Todo } from "../types/todo";
+import { v4 as uuidv4 } from "uuid";
 import "../Styles/add-folder-or-list.css";
 
 export default function AddFolderOrList() {
@@ -12,64 +13,30 @@ export default function AddFolderOrList() {
   });
 
   function listFoldersAsOptions() {
-    const folders = sidebarState.data.filter((array) => {
-      if (array.type === "folder") {
-        return array;
-      }
-    });
-    folders.unshift({ type: "list", name: "none", id: 0, todos: [] });
-    const names = folders.map((folder) => {
-      return (
-        <option value={`${folder.id}`} key={`${folder.id}`}>
-          {folder.name}
-        </option>
-      );
-    });
-    return names;
-  }
+    const folders = sidebarState.data.filter((item) => item.type === "folder");
 
-  function createId(type: string): number {
-    if (type === "list") {
-      const allLists = sidebarState.data.filter((obj) => {
-        if (obj.type === "list") {
-          return obj;
-        }
-      });
-      const ids = allLists.map((list) => {
-        return list.id;
-      });
-      const max = Math.max(...ids);
+    // Add "none" option at the top
+    folders.unshift({ type: "list", name: "none", id: "0", todos: [] });
 
-      const id = max + 1;
-      return id;
-    } else if (type === "folder") {
-      const allLists = sidebarState.data.filter((obj) => {
-        if (obj.type === "folder") {
-          return obj;
-        }
-      });
-      const ids = allLists.map((folder) => {
-        return folder.id;
-      });
-      const max = Math.max(...ids);
-
-      const id = max + 1;
-      return id;
-    }
-    return 1;
+    return folders.map((folder) => (
+      <option value={folder.id} key={folder.id}>
+        {folder.name}
+      </option>
+    ));
   }
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     type NewListItem = {
-      id: number;
+      id: string; // ✅ UUID
       todos: Todo[];
       type: "list";
       name: string;
       folderId?: number;
     };
     type NewFolderItem = {
-      id: number;
+      id: string; // ✅ UUID
       open: boolean;
       type: "folder";
       name: string;
@@ -77,34 +44,32 @@ export default function AddFolderOrList() {
     };
 
     let newItem: NewListItem | NewFolderItem;
+
     if (formState.type === "list") {
       newItem = {
-        id: createId("list"),
+        id: uuidv4(), // replace createId
         todos: [],
         type: "list",
         name: formState.title,
         folderId: formState.folderId,
       };
-    }
-    if (formState.type === "folder") {
+    } else if (formState.type === "folder") {
       newItem = {
-        id: createId("folder"),
+        id: uuidv4(), // replace createId
         open: false,
         type: "folder",
         name: formState.title,
         folderId: undefined,
       };
-      newItem.id = createId("folder");
-      newItem.open = false;
-      newItem.type = formState.type;
-      newItem.name = formState.title;
-      newItem.folderId = undefined;
     }
 
+    // add the new item to sidebar state
     setSidebarState((prev) => ({
       ...prev,
       data: [...prev.data, newItem],
     }));
+
+    // reset form
     setFormState({
       title: "",
       type: "list",
