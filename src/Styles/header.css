@@ -19,3 +19,12 @@
   margin: 0;
   padding: 0;
 }
+
+.header-btn {
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.active-header {
+  background: rgba(0, 255, 255, 0.15);
+}
