@@ -4,7 +4,7 @@ import "../Styles/add-todo-form.css";
 import { v4 as uuidv4 } from "uuid";
 
 type Props = {
-  id?: number;
+  id?: string;
   type?: string;
   mode?: "Focus";
 };

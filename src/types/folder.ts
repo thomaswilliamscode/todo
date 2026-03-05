@@ -1,8 +1,6 @@
-
-
 export interface Folder {
-    type: 'folder';
-    id: number;
-    name: string;
-    open: boolean;
+  type: "folder";
+  id: string;
+  name: string;
+  open: boolean;
 }
