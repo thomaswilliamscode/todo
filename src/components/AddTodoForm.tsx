@@ -31,7 +31,7 @@ export default function AddToDoForm({ id, mode }: Props) {
 
     // Focus Mode may render this form without an explicit list id.
     // Default to Inbox (id 0).
-    const resolvedListId = id ?? 0;
+    const resolvedListId = id ?? '0';
 
     const newTodo = {
       id: uuidv4(),
