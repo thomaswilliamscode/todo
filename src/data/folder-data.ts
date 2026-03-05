@@ -29,14 +29,14 @@ export const data = [
     type: "list",
     id: "3",
     name: "Video Ideas",
-    folderId: 2,
-    todos: [{ id: 3, title: "walk dogs", completed: false }],
+    folderId: "2",
+    todos: [{ id: "3", title: "walk dogs", completed: false }],
   },
   {
     type: "list",
     id: "4",
     name: "Clips to Post",
-    folderId: 2,
-    todos: [{ id: 4, title: "rant", completed: false }],
+    folderId: "2",
+    todos: [{ id: "4", title: "rant", completed: false }],
   },
 ];

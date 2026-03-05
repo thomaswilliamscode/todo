@@ -20,14 +20,14 @@ export const stateData: StateData = {
       id: "1",
       name: "Today",
       todos: dummyData1,
-      folderId: 1,
+      folderId: "1",
     },
     {
       type: "list",
       id: "2",
       name: "Focus Tasks",
       todos: dummyData2,
-      folderId: 1,
+      folderId: "1",
     },
     {
       type: "folder",
@@ -53,7 +53,7 @@ export const stateData: StateData = {
       id: "4",
       name: "Focus Tasks",
       todos: dummyData4,
-      folderId: 2,
+      folderId: "2",
     },
   ],
 };
