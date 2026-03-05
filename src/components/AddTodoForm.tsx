@@ -15,6 +15,18 @@ export default function AddToDoForm({ id, mode }: Props) {
   const [fadeOut, setFadeOut] = useState(false);
   const { setSidebarState } = useTodoContext();
 
+  function test(data) {
+    // split words into
+    let words = data.split(" ");
+    let capitalized = words.map((word: string) => {
+      let cap = word[0].toUpperCase();
+      return cap + word.slice(1);
+    });
+    // put words back together
+    console.log(capitalized.join(" "));
+    return capitalized.join(" ");
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -26,7 +38,7 @@ export default function AddToDoForm({ id, mode }: Props) {
 
     const newTodo = {
       id: Date.now(),
-      title: input,
+      title: test(input),
       completed: false,
       listId: resolvedListId,
     };
@@ -41,7 +53,7 @@ export default function AddToDoForm({ id, mode }: Props) {
     }));
 
     if (mode === "Focus") {
-      setMessage(`Added ${input}`); // store current message
+      setMessage(`Added ${test(input)}`); // store current message
       setshowMessage(true);
       setFadeOut(false); // start fully visible
 
