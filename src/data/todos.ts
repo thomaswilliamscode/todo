@@ -95,12 +95,12 @@ export const inboxData: Todo[] = [
     id: "2",
     title: "Second Focus",
     completed: true,
-    listId: 0,
+    listId: "0",
   },
   {
     id: "3",
     title: "Third Focus",
     completed: false,
-    listId: 0,
+    listId: "0",
   },
 ];

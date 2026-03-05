@@ -14,7 +14,7 @@ export default function SidebarList({ obj }: Props) {
   const { name, id } = obj;
   const { sidebarState, setSidebarState } = useTodoContext();
 
-  function deleteList(id: number) {
+  function deleteList(id: string) {
     const filteredState = sidebarState.data.filter(
       (item) => !(item.type === "list" && item.id === id)
     );
