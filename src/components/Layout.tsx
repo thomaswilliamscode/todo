@@ -38,6 +38,8 @@ export default function Layout() {
     console.log(sidebarState);
   }
 
+  const [focus, setFocus] = useState<"home" | "sidebar" | "focus" | null>(null);
+
   return (
     <>
       <TodoContext.Provider
@@ -47,6 +49,8 @@ export default function Layout() {
           deleteTodo: handleDelete,
           currentTask,
           setCurrentTask,
+          focus,
+          setFocus,
         }}
       >
         <Header />
