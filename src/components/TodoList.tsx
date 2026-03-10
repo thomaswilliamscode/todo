@@ -5,6 +5,7 @@ import AddTodoForm from "./AddTodoForm";
 import type { List } from "../types/list";
 import type { Todo } from "../types/todo";
 import "../Styles/todo-list.css";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 export default function TodoList() {
   const todoContext = useContext(TodoContext);
@@ -12,7 +13,6 @@ export default function TodoList() {
     throw new Error("TodoContext is undefined");
   }
   const { sidebarState, setSidebarState } = todoContext;
-  console.log(sidebarState);
   const { id } = useParams();
   const listId = id;
   let title = "test";
@@ -51,21 +51,35 @@ export default function TodoList() {
   const filtered: Todo[] = found.todos.filter((t: Todo) => !t.completed);
 
   function listItem() {
-    const mapped = filtered.map((obj: Todo) => {
+    const mapped = filtered.map((obj: Todo, index) => {
       const key = obj.id;
       return (
-        <div key={key}>
-          <li className="todoItem">
-            <span></span>
-            {obj.title}
-            <button className="del-btn-main" onClick={() => todoDelete(obj.id)}>
-              Delete
-            </button>
-          </li>
-        </div>
+        <Draggable draggableId={key} index={index} key={key}>
+          {(provided) => (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+            >
+              <li className="todoItem">
+                <span></span>
+                {obj.title}
+                <button
+                  className="del-btn-main"
+                  onClick={() => todoDelete(obj.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            </div>
+          )}
+        </Draggable>
       );
     });
     return mapped;
+  }
+  if (!listId) {
+    return <p>Invalid list</p>;
   }
 
   return (
@@ -75,7 +89,14 @@ export default function TodoList() {
         <AddTodoForm id={listId ?? ""} type="list" />
       </div>
 
-      <ul>{listItem()}</ul>
+      <Droppable droppableId={listId}>
+        {(provided) => (
+          <ul ref={provided.innerRef} {...provided.droppableProps}>
+            {listItem()}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
     </div>
   );
 }
