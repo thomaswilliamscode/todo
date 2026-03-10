@@ -62,20 +62,35 @@ export default function Layout() {
           item.type === "list" && item.id === destination.droppableId
       );
 
-      console.log(`SourceList: `, sourceList);
-      console.log("DestList: ", destList);
+      // console.log(`SourceList: `, sourceList);
+      // console.log("DestList: ", destList);
 
       if (!sourceList || !destList) return prev;
 
-      // REORDER WITHIN SAME LIST
+      // REORDER WITHIN SAME LIST (filtered UI)
       if (source.droppableId === destination.droppableId) {
-        const newTodos = [...sourceList.todos];
+        // get full array of todos from state
+        const fullTodos = [...sourceList.todos];
 
-        const [moved] = newTodos.splice(source.index, 1);
-        newTodos.splice(destination.index, 0, moved);
+        // filter only uncompleted todos (same as in UI)
+        const filteredTodos = fullTodos.filter((t) => !t.completed);
+
+        // find actual index in fullTodos
+        const actualSourceIndex = fullTodos.indexOf(
+          filteredTodos[source.index]
+        );
+        const actualDestIndex = fullTodos.indexOf(
+          filteredTodos[destination.index]
+        );
+
+        // remove from fullTodos
+        const [moved] = fullTodos.splice(actualSourceIndex, 1);
+
+        // insert at new position
+        fullTodos.splice(actualDestIndex, 0, moved);
 
         const newData = data.map((item) =>
-          item.id === sourceList.id ? { ...item, todos: newTodos } : item
+          item.id === sourceList.id ? { ...item, todos: fullTodos } : item
         );
 
         return { ...prev, data: newData };
