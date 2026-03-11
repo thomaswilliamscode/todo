@@ -1,42 +1,52 @@
+import { v4 as uuidv4 } from "uuid";
+
+export const folder1Id: string = uuidv4();
+export const folder2Id: string = uuidv4();
+
+export const list1Id: string = uuidv4();
+export const list2Id: string = uuidv4();
+export const list3Id: string = uuidv4();
+export const list4Id: string = uuidv4();
+
 export const data = [
   {
     type: "folder",
-    id: "1",
+    id: folder1Id,
     name: "🔥 Daily Rituals",
     open: true,
   },
   {
     type: "folder",
-    id: "2",
+    id: folder2Id,
     name: "📦 Content",
     open: true,
   },
   {
     type: "list",
-    id: "1",
+    id: list1Id,
     name: "Today!!!",
-    folderId: '1',
-    todos: [{ id: '1', title: "test", completed: false }],
+    folderId: folder1Id,
+    todos: [{ id: "1", title: "test", completed: false }],
   },
   {
     type: "list",
-    id: "2",
+    id: list2Id,
     name: "Focus Tasks",
-    folderId: '1',
-    todos: [{ id: '2', title: "shower", completed: false }],
+    folderId: folder1Id,
+    todos: [{ id: "2", title: "shower", completed: false }],
   },
   {
     type: "list",
-    id: "3",
+    id: list3Id,
     name: "Video Ideas",
-    folderId: "2",
+    folderId: folder2Id,
     todos: [{ id: "3", title: "walk dogs", completed: false }],
   },
   {
     type: "list",
-    id: "4",
+    id: list4Id,
     name: "Clips to Post",
-    folderId: "2",
+    folderId: folder2Id,
     todos: [{ id: "4", title: "rant", completed: false }],
   },
 ];

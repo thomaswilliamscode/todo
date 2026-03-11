@@ -51,7 +51,7 @@ export default function SidebarList({ obj, index }: Props) {
 
   function regularSidebar() {
     return (
-      <Draggable draggableId={`sidebar-list-${id}`} index={index} key={id}>
+      <Draggable draggableId={`sidebarList-${id}`} index={index} key={id}>
         {(provided) => (
           <div
             className="sidebar-ul-no-folder"

@@ -21,7 +21,7 @@ export default function FolderPage() {
   const output = lists.map((obj) => {
     return (
       <div key={obj.id}>
-        <FolderTodos list={obj} folder={folder} />
+        <FolderTodos list={obj} />
       </div>
     );
   });

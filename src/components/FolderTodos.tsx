@@ -2,16 +2,14 @@ import { useContext } from "react";
 import AddTodoForm from "./AddTodoForm";
 import { TodoContext } from "../context/TodoContext";
 import type { List } from "../types/list";
-import type { Folder } from "../types/folder";
 import type { Todo } from "../types/todo";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 type Props = {
   list: List;
-  folder: Folder;
 };
 
-export default function FolderTodos({ list, folder }: Props) {
+export default function FolderTodos({ list }: Props) {
   const todoContext = useContext(TodoContext);
   if (!todoContext) {
     throw new Error("TodoContext is undefined");
@@ -47,13 +45,12 @@ export default function FolderTodos({ list, folder }: Props) {
       .filter((t) => !t.completed)
       .map((t, index) => (
         <Draggable
-          draggableId={`${listData.id} - ${t.id}`}
+          draggableId={`list-${listData.id} - ${t.id}`}
           index={index}
-          key={`${listData.id} - ${t.id}`}
+          key={`list-${listData.id}-${t.id}`}
         >
           {(provided) => (
             <li
-              key={`${t.id}`}
               className="folder-todos todoItem"
               {...provided.draggableProps}
               {...provided.dragHandleProps}
@@ -71,6 +68,12 @@ export default function FolderTodos({ list, folder }: Props) {
           )}
         </Draggable>
       ));
+    console.log(
+      "list",
+      listData.id,
+      "todo ids",
+      listData.todos.map((t) => t.id)
+    );
 
     return display;
   }

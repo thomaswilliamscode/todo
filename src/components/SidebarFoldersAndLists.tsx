@@ -12,7 +12,7 @@ export default function SidebarFoldersAndLists() {
     const data = sidebarState.data;
     return data.map((obj, index) => {
       const type = obj.type;
-      const key = `${obj.type} - ${obj.id}`;
+      const key = `${obj.type}-${obj.id}`;
       if (type === "folder") {
         return (
           <Draggable draggableId={`${key}`} index={index} key={key}>
@@ -22,7 +22,7 @@ export default function SidebarFoldersAndLists() {
                 {...provided.dragHandleProps}
                 ref={provided.innerRef}
               >
-                <SidebarFolder key={key} obj={obj} data={data} index={index} />
+                <SidebarFolder obj={obj} data={data} index={index} />
               </div>
             )}
           </Draggable>
