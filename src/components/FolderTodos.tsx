@@ -46,23 +46,29 @@ export default function FolderTodos({ list, folder }: Props) {
     const display = listData.todos
       .filter((t) => !t.completed)
       .map((t, index) => (
-        <Draggable draggableId={`${listData.id} - ${t.id}`} index={index} key={`${listData.id} - ${t.id}`}>
-          { (provided) => (
-            <li key={`${t.id}`} className="folder-todos todoItem"
+        <Draggable
+          draggableId={`${listData.id} - ${t.id}`}
+          index={index}
+          key={`${listData.id} - ${t.id}`}
+        >
+          {(provided) => (
+            <li
+              key={`${t.id}`}
+              className="folder-todos todoItem"
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              ref={provided.innerRef}>
-            <span></span>
-            <span>{t.title}</span>
-            <button
-              className="del-btn-main"
-              onClick={() => todoDelete(t, listData)}
+              ref={provided.innerRef}
             >
-              Delete
-            </button>
-          </li>
+              <span></span>
+              <span>{t.title}</span>
+              <button
+                className="del-btn-main"
+                onClick={() => todoDelete(t, listData)}
+              >
+                Delete
+              </button>
+            </li>
           )}
-          
         </Draggable>
       ));
 
@@ -75,16 +81,17 @@ export default function FolderTodos({ list, folder }: Props) {
         <h3 className="folder-todo-title">{list.name}</h3>
         <AddTodoForm id={id} type={type} />
       </div>
-      <Droppable droppableId={list.id}>
+      <Droppable droppableId={list.id} type="folder-todos">
         {(provided) => (
-          <ul className="folder-ul"
-            ref={provided.innerRef} 
+          <ul
+            className="folder-ul"
+            ref={provided.innerRef}
             {...provided.droppableProps}
-            >{displayTodos(list)}
+          >
+            {displayTodos(list)}
             {provided.placeholder}
           </ul>
         )}
-        
       </Droppable>
     </div>
   );

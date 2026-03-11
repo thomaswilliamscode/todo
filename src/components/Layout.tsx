@@ -43,9 +43,11 @@ export default function Layout() {
   const [focus, setFocus] = useState<"home" | "sidebar" | "focus" | null>(null);
 
   function onDragEnd(result: DropResult) {
-    const { source, destination } = result;
-    console.log(`Source: `, source);
-    console.log(`Destination: `, destination);
+    const { source, destination, type } = result;
+    console.log(`Result: `, result);
+    // console.log(`Source: `, source);
+    // console.log(`Destination: `, destination);
+    // console.log(`Type: `, type);
 
     if (!destination) return;
 

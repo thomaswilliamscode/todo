@@ -7,13 +7,15 @@ import { useTodoContext } from "../context/TodoContext";
 import "../Styles/sidebar.css";
 
 type SidebarItem = Folder | List | Inbox;
+type index = number;
 
 type Props = {
   obj: Folder;
   data: SidebarItem[];
+  index: index;
 };
 
-export default function SidebarFolder({ obj, data }: Props) {
+export default function SidebarFolder({ obj, data, index }: Props) {
   const { name, id } = obj;
   const [isOpen, setIsOpen] = useState(obj.open);
   const { sidebarState, setSidebarState } = useTodoContext();
