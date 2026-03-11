@@ -100,8 +100,22 @@ export default function Layout() {
       const sourceTodos = [...sourceList.todos];
       const destTodos = [...destList.todos];
 
-      const [moved] = sourceTodos.splice(source.index, 1);
-      destTodos.splice(destination.index, 0, moved);
+      const sourceFiltered = sourceTodos.filter((t) => !t.completed);
+
+      const actualSourceIndex = sourceTodos.indexOf(
+        sourceFiltered[source.index]
+      );
+
+      const [moved] = sourceTodos.splice(actualSourceIndex, 1);
+
+      const destFiltered = destTodos.filter((t) => !t.completed);
+
+      const actualDestIndex =
+        destination.index >= destFiltered.length
+          ? destTodos.length
+          : destTodos.indexOf(destFiltered[destination.index]);
+
+      destTodos.splice(actualDestIndex, 0, moved);
 
       const newData = data.map((item) => {
         if (item.id === sourceList.id) {

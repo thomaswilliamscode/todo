@@ -46,7 +46,7 @@ export default function FolderTodos({ list, folder }: Props) {
     const display = listData.todos
       .filter((t) => !t.completed)
       .map((t, index) => (
-        <Draggable draggableId={t.id} index={index} key={t.id}>
+        <Draggable draggableId={`${listData.id} - ${t.id}`} index={index} key={`${listData.id} - ${t.id}`}>
           { (provided) => (
             <li key={`${t.id}`} className="folder-todos todoItem"
               {...provided.draggableProps}
