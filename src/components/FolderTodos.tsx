@@ -2,19 +2,22 @@ import { useContext } from "react";
 import AddTodoForm from "./AddTodoForm";
 import { TodoContext } from "../context/TodoContext";
 import type { List } from "../types/list";
+import type { Folder } from "../types/folder";
 import type { Todo } from "../types/todo";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 type Props = {
-  data: List;
+  list: List;
+  folder: Folder;
 };
 
-export default function FolderTodos({ data }: Props) {
+export default function FolderTodos({ list, folder }: Props) {
   const todoContext = useContext(TodoContext);
   if (!todoContext) {
     throw new Error("TodoContext is undefined");
   }
   const { sidebarState, setSidebarState } = todoContext;
-  const { id, type } = data;
+  const { id, type } = list;
 
   function todoDelete(todoObj: Todo, listData: List) {
     const newData = sidebarState.data.map((objItem) => {
@@ -42,17 +45,25 @@ export default function FolderTodos({ data }: Props) {
   function displayTodos(listData: List) {
     const display = listData.todos
       .filter((t) => !t.completed)
-      .map((t) => (
-        <li key={`${t.id}`} className="folder-todos todoItem">
-          <span></span>
-          <span>{t.title}</span>
-          <button
-            className="del-btn-main"
-            onClick={() => todoDelete(t, listData)}
-          >
-            Delete
-          </button>
-        </li>
+      .map((t, index) => (
+        <Draggable draggableId={t.id} index={index} key={t.id}>
+          { (provided) => (
+            <li key={`${t.id}`} className="folder-todos todoItem"
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}>
+            <span></span>
+            <span>{t.title}</span>
+            <button
+              className="del-btn-main"
+              onClick={() => todoDelete(t, listData)}
+            >
+              Delete
+            </button>
+          </li>
+          )}
+          
+        </Draggable>
       ));
 
     return display;
@@ -61,10 +72,20 @@ export default function FolderTodos({ data }: Props) {
   return (
     <div>
       <div className="folder-name-and-add-container">
-        <h3 className="folder-todo-title">{data.name}</h3>
+        <h3 className="folder-todo-title">{list.name}</h3>
         <AddTodoForm id={id} type={type} />
       </div>
-      <ul className="folder-ul">{displayTodos(data)}</ul>
+      <Droppable droppableId={list.id}>
+        {(provided) => (
+          <ul className="folder-ul"
+            ref={provided.innerRef} 
+            {...provided.droppableProps}
+            >{displayTodos(list)}
+            {provided.placeholder}
+          </ul>
+        )}
+        
+      </Droppable>
     </div>
   );
 }
