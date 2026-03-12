@@ -7,6 +7,10 @@ import {
   inboxData,
 } from "./todos";
 
+import { folder1Id, folder2Id } from "./folder-data";
+
+import { list1, list2, list3, list4 } from "./id-info";
+
 export const stateData: StateData = {
   data: [
     {
@@ -17,43 +21,43 @@ export const stateData: StateData = {
     },
     {
       type: "list",
-      id: "1",
+      id: list1,
       name: "Today",
       todos: dummyData1,
-      folderId: "1",
+      folderId: folder1Id,
     },
     {
       type: "list",
-      id: "2",
+      id: list2,
       name: "Focus Tasks",
       todos: dummyData2,
-      folderId: "1",
+      folderId: folder1Id,
     },
     {
       type: "folder",
-      id: "1",
+      id: folder1Id,
       name: "🔥 Daily Rituals",
       open: true,
     },
     {
       type: "list",
-      id: "3",
+      id: list3,
       name: "💡 Standalone",
       todos: dummyData3,
       // no folderId — it lives outside folders
     },
     {
       type: "folder",
-      id: "2",
+      id: folder2Id,
       name: "Programming",
       open: false,
     },
     {
       type: "list",
-      id: "4",
+      id: list4,
       name: "Focus Tasks",
       todos: dummyData4,
-      folderId: "2",
+      folderId: folder2Id,
     },
   ],
 };

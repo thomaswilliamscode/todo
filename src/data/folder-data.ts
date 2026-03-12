@@ -8,6 +8,11 @@ export const list2Id: string = uuidv4();
 export const list3Id: string = uuidv4();
 export const list4Id: string = uuidv4();
 
+const todo1: string = uuidv4();
+const todo2: string = uuidv4();
+const todo3: string = uuidv4();
+const todo4: string = uuidv4();
+
 export const data = [
   {
     type: "folder",
@@ -26,27 +31,27 @@ export const data = [
     id: list1Id,
     name: "Today!!!",
     folderId: folder1Id,
-    todos: [{ id: "1", title: "test", completed: false }],
+    todos: [{ id: todo1, title: "test", completed: false }],
   },
   {
     type: "list",
     id: list2Id,
     name: "Focus Tasks",
     folderId: folder1Id,
-    todos: [{ id: "2", title: "shower", completed: false }],
+    todos: [{ id: todo2, title: "shower", completed: false }],
   },
   {
     type: "list",
     id: list3Id,
     name: "Video Ideas",
     folderId: folder2Id,
-    todos: [{ id: "3", title: "walk dogs", completed: false }],
+    todos: [{ id: todo3, title: "walk dogs", completed: false }],
   },
   {
     type: "list",
     id: list4Id,
     name: "Clips to Post",
     folderId: folder2Id,
-    todos: [{ id: "4", title: "rant", completed: false }],
+    todos: [{ id: todo4, title: "rant", completed: false }],
   },
 ];
