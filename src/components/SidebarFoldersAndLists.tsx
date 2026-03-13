@@ -52,7 +52,7 @@ export default function SidebarFoldersAndLists() {
           </NavLink>
         </div>
       </div>
-      <Droppable droppableId="sidebar-bottom" type="sidebar">
+      <Droppable droppableId="root" type="root">
         {(provided) => (
           <div
             id="sidebar-bottom"

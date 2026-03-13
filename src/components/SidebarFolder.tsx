@@ -56,9 +56,9 @@ export default function SidebarFolder({ obj, data, index }: Props) {
     return data.map((info, index) => {
       // Only lists have folderId + are linkable as lists
       if (info.type === "list" && info.folderId === obj.id) {
-        let key = `${info.type}-${info.id}`;
+        let key = `listNFolder-${info.id}`;
         return (
-          <Draggable draggableId={`main-${key}`} index={index} key={key}>
+          <Draggable draggableId={`${key}`} index={index} key={key}>
             {(provided) => (
               <div
                 className="sidebar-List-in-Folder"
@@ -126,7 +126,7 @@ export default function SidebarFolder({ obj, data, index }: Props) {
           isOpen ? "visible" : "hidden"
         } `}
       >
-        <Droppable droppableId={id} type="folder">
+        <Droppable droppableId={`folder-${id}`} type="folder">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {listsInFolders()}
