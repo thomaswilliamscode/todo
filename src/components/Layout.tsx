@@ -50,6 +50,10 @@ export default function Layout() {
 
     // handle todos in different list
 
+    // handle list in same folders
+
+    // handle list in different folders
+
     // handle folders
   }
 
