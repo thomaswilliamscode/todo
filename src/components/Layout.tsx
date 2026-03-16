@@ -102,8 +102,10 @@ export default function Layout() {
         // create new array
         const newData = [...prev.data];
         console.log(newData);
+        console.log(newData[sourceIndex], newData[destIndex]);
         // find lists with folderId
         const [movedData] = newData.splice(sourceIndex, 1);
+        movedData.folderId = `${folderId}`;
         console.log(movedData);
         newData.splice(destIndex, 0, movedData);
         console.log(newData);
