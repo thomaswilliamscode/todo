@@ -55,35 +55,41 @@ export default function Layout() {
       let sourceIndex = source.index;
       let destIndex = destination.index;
       let cleanId = fromId.replace("list-", "");
+      let destCleanId = toId.replace("list-", "");
 
-      setSidebarState((prev) => {
-        // create new array
+      if (cleanId !== destCleanId) {
         const newData = [...prev.data];
-        // find listId
-        let found = newData.find((item) => item.id === cleanId);
-        // find index of found list
-        let foundIndex = newData.findIndex((item) => item.id === cleanId);
-        // get list obj based on foundIndex
-        let newList = newData[foundIndex];
-        // filter for non-completed todos
-        let foundUncompleted = found.todos.filter((todo) => !todo.completed);
-        // copy non-completed todos
-        let newTodos = [...foundUncompleted];
-        // remove source index
-        const [movedTodo] = newTodos.splice(sourceIndex, 1);
-        // add destination index
-        newTodos.splice(destIndex, 0, movedTodo);
-        // set newState
-        newData[foundIndex] = {
-          ...newList,
-          todos: newTodos,
-        };
-        // return newState
-        return {
-          ...prev,
-          data: newData,
-        };
-      });
+      } else {
+        setSidebarState((prev) => {
+          // create new array
+          const newData = [...prev.data];
+          // find listId
+          let found = newData.find((item) => item.id === cleanId);
+          // find index of found list
+          let foundIndex = newData.findIndex((item) => item.id === cleanId);
+          // get list obj based on foundIndex
+          let newList = newData[foundIndex];
+          // filter for non-completed todos
+          let foundUncompleted = found.todos.filter((todo) => !todo.completed);
+          // copy non-completed todos
+          let newTodos = [...foundUncompleted];
+          // remove source index
+          const [movedTodo] = newTodos.splice(sourceIndex, 1);
+          movedTodo.listId = destCleanId;
+          // add destination index
+          newTodos.splice(destIndex, 0, movedTodo);
+          // set newState
+          newData[foundIndex] = {
+            ...newList,
+            todos: newTodos,
+          };
+          // return newState
+          return {
+            ...prev,
+            data: newData,
+          };
+        });
+      }
     }
 
     // handle todos in different list
@@ -115,8 +121,6 @@ export default function Layout() {
           data: newData,
         };
       });
-
-      // handle list in different folders
 
       // handle folders
     }

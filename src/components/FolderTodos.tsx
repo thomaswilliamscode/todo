@@ -45,7 +45,7 @@ export default function FolderTodos({ list }: Props) {
       .filter((t) => !t.completed)
       .map((t, index) => (
         <Draggable
-          draggableId={`list-${listData.id} - ${t.id}`}
+          draggableId={`todo-${listData.id} - ${t.id}`}
           index={index}
           key={`list-${listData.id}-${t.id}`}
         >
@@ -78,7 +78,7 @@ export default function FolderTodos({ list }: Props) {
         <h3 className="folder-todo-title">{list.name}</h3>
         <AddTodoForm id={id} type={type} />
       </div>
-      <Droppable droppableId={list.id} type="folder-todos">
+      <Droppable droppableId={`list-${list.id}`} type="folder-todos">
         {(provided) => (
           <ul
             className="folder-ul"
