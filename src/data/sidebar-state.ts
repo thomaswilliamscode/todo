@@ -44,7 +44,7 @@ export const stateData: StateData = {
       id: list3,
       name: "💡 Standalone",
       todos: dummyData3,
-      // no folderId — it lives outside folders
+      folderId: folder2Id,
     },
     {
       type: "folder",
