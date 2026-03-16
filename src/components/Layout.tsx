@@ -56,25 +56,34 @@ export default function Layout() {
       let destIndex = destination.index;
       let cleanId = fromId.replace("list-", "");
 
-      let found = sidebarState.data.find((item) => {
-        if (item.id === cleanId) {
-          return item;
-        }
+      setSidebarState((prev) => {
+        // create new array
+        const newData = [...prev.data];
+        // find listId
+        let found = newData.find((item) => item.id === cleanId);
+        // find index of found list
+        let foundIndex = newData.findIndex((item) => item.id === cleanId);
+        // get list obj based on foundIndex
+        let newList = newData[foundIndex];
+        // filter for non-completed todos
+        let foundUncompleted = found.todos.filter((todo) => !todo.completed);
+        // copy non-completed todos
+        let newTodos = [...foundUncompleted];
+        // remove source index
+        const [movedTodo] = newTodos.splice(sourceIndex, 1);
+        // add destination index
+        newTodos.splice(destIndex, 0, movedTodo);
+        // set newState
+        newData[foundIndex] = {
+          ...newList,
+          todos: newTodos,
+        };
+        // return newState
+        return {
+          ...prev,
+          data: newData,
+        };
       });
-
-      let foundUncompleted = found.todos.filter((todo) => {
-        if (!todo.completed) {
-          return todo;
-        }
-      });
-
-      console.log("we found: ", foundUncompleted);
-
-      // setSidebarState( (prev) => ({
-
-      // }))
-
-      console.log("we in the same list fam");
     }
 
     // handle todos in different list
