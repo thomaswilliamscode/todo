@@ -90,9 +90,34 @@ export default function Layout() {
 
     // handle list in same folders
 
-    // handle list in different folders
+    if (fromId.includes("folder") && toId.includes("folder")) {
+      let folderId = destination.droppableId;
+      let sourceId = source.droppableId;
+      let sourceIndex = source.index;
+      let destIndex = destination.index;
+      folderId = folderId.replace("folder-", "");
+      sourceId = sourceId.replace("folder-", "");
 
-    // handle folders
+      setSidebarState((prev) => {
+        // create new array
+        const newData = [...prev.data];
+        console.log(newData);
+        // find lists with folderId
+        const [movedData] = newData.splice(sourceIndex, 1);
+        console.log(movedData);
+        newData.splice(destIndex, 0, movedData);
+        console.log(newData);
+
+        return {
+          ...prev,
+          data: newData,
+        };
+      });
+
+      // handle list in different folders
+
+      // handle folders
+    }
   }
 
   return (
