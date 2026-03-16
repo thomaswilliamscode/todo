@@ -54,7 +54,7 @@ export default function TodoList() {
     const mapped = filtered.map((obj: Todo, index) => {
       const key = obj.id;
       return (
-        <Draggable draggableId={`main-${key}`} index={index} key={key}>
+        <Draggable draggableId={`todo-${key}`} index={index} key={key}>
           {(provided) => (
             <div
               {...provided.draggableProps}
@@ -89,7 +89,7 @@ export default function TodoList() {
         <AddTodoForm id={listId ?? ""} type="list" />
       </div>
 
-      <Droppable droppableId={listId} type="list">
+      <Droppable droppableId={`list-${listId}`} type="list">
         {(provided) => (
           <ul ref={provided.innerRef} {...provided.droppableProps}>
             {listItem()}

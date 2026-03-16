@@ -68,12 +68,6 @@ export default function FolderTodos({ list }: Props) {
           )}
         </Draggable>
       ));
-    console.log(
-      "list",
-      listData.id,
-      "todo ids",
-      listData.todos.map((t) => t.id)
-    );
 
     return display;
   }

@@ -43,10 +43,39 @@ export default function Layout() {
   const [focus, setFocus] = useState<"home" | "sidebar" | "focus" | null>(null);
 
   function onDragEnd(result: DropResult) {
-    const { source, destination, type } = result;
+    const { source, destination, type, draggableId } = result;
     console.log(`Result: `, result);
+    if (!destination) return;
+
+    let fromId = source.droppableId;
+    let toId = destination.droppableId;
 
     // handle todos in same list
+    if (fromId.includes("list") && toId.includes("list")) {
+      let sourceIndex = source.index;
+      let destIndex = destination.index;
+      let cleanId = fromId.replace("list-", "");
+
+      let found = sidebarState.data.find((item) => {
+        if (item.id === cleanId) {
+          return item;
+        }
+      });
+
+      let foundUncompleted = found.todos.filter((todo) => {
+        if (!todo.completed) {
+          return todo;
+        }
+      });
+
+      console.log("we found: ", foundUncompleted);
+
+      // setSidebarState( (prev) => ({
+
+      // }))
+
+      console.log("we in the same list fam");
+    }
 
     // handle todos in different list
 
