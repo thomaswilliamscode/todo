@@ -121,20 +121,20 @@ export default function SidebarFolder({ obj, data, index }: Props) {
           Delete
         </button>
       </div>
-      <ul
-        className={`lists-in-folder sidebar-ul ${
-          isOpen ? "visible" : "hidden"
-        } `}
-      >
-        <Droppable droppableId={`folder-${id}`} type="folder">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {listsInFolders()}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </ul>
+      <Droppable droppableId={`folder-${id}`} type="folder">
+        {(provided) => (
+          <ul
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className={`lists-in-folder sidebar-ul ${
+              isOpen ? "visible" : "hidden"
+            } `}
+          >
+            {listsInFolders()}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
     </div>
   );
 }
