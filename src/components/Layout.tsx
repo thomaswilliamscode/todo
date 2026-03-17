@@ -58,7 +58,54 @@ export default function Layout() {
       let destCleanId = toId.replace("list-", "");
 
       if (cleanId !== destCleanId) {
-        const newData = [...prev.data];
+        setSidebarState((prev) => {
+          const newData = [...prev.data];
+          // create source list todos !completed map
+          let sourceList = newData.find(
+            (obj) => obj.type === "list" && obj.id === cleanId
+          );
+          let destList = newData.find(
+            (obj) => obj.type === "list" && obj.id === destCleanId
+          );
+          if (!sourceList || !destList) {
+            return prev;
+          }
+          let sourceTodos = sourceList.todos.filter((obj) => !obj.completed);
+          // create dest list todos !completed map
+
+          // let destTodos = destList.todos.filter((obj) => !obj.completed);
+
+          // remove from source list, and change listID
+          let newDestTodos = [...destList.todos];
+
+          let newSourceTodos = [...sourceTodos];
+          const [oldSourceTodos] = newSourceTodos.splice(sourceIndex, 1);
+          oldSourceTodos.listId = destCleanId;
+          newDestTodos.splice(destIndex, 0, oldSourceTodos);
+
+          // return new data
+
+          return {
+            ...prev,
+            data: newData.map((item) => {
+              if (!item) return null;
+              if (item.id === destCleanId) {
+                return {
+                  ...item,
+                  todos: newDestTodos,
+                };
+              }
+              if (item.id === cleanId) {
+                return {
+                  ...item,
+                  todos: newSourceTodos,
+                };
+              } else {
+                return item;
+              }
+            }),
+          };
+        });
       } else {
         setSidebarState((prev) => {
           // create new array
