@@ -57,6 +57,7 @@ export default function Layout() {
       let cleanId = fromId.replace("list-", "");
       let destCleanId = toId.replace("list-", "");
 
+      // handle todos in different list
       if (cleanId !== destCleanId) {
         setSidebarState((prev) => {
           const newData = [...prev.data];
@@ -139,8 +140,6 @@ export default function Layout() {
       }
     }
 
-    // handle todos in different list
-
     // handle list in same folders
 
     if (fromId.includes("folder") && toId.includes("folder")) {
@@ -168,8 +167,25 @@ export default function Layout() {
           data: newData,
         };
       });
+    }
 
-      // handle folders
+    // handle folders in root
+
+    if (fromId.includes("root-") && toId.includes("root-")) {
+      let sourceIndex = source.index;
+      let destIndex = destination.index;
+      setSidebarState((prev) => {
+        //copy data
+        const newData = [...prev.data];
+        // swap indexes source and dest
+        const [movedData] = newData.splice(sourceIndex, 1);
+        newData.splice(destIndex, 0, movedData);
+
+        return {
+          ...prev,
+          data: newData,
+        };
+      });
     }
   }
 
