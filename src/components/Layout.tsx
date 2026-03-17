@@ -10,7 +10,6 @@ import "../Styles/layout.css";
 import { DragDropContext } from "@hello-pangea/dnd";
 import type { DropResult } from "@hello-pangea/dnd";
 import type { List } from "../types/list.ts";
-import type { Folder } from "../types/folder.ts";
 
 export default function Layout() {
   const [sidebarState, setSidebarState] = useState<StateData>(() => {
@@ -91,7 +90,6 @@ export default function Layout() {
           return {
             ...prev,
             data: newData.map((item) => {
-              if (!item) return null;
               if (item.id === destCleanId) {
                 return {
                   ...item,
