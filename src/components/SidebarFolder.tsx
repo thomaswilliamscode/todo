@@ -16,7 +16,7 @@ type Props = {
   index: index;
 };
 
-export default function SidebarFolder({ obj, data, index }: Props) {
+export default function SidebarFolder({ obj, data }: Props) {
   const { name, id } = obj;
   const [isOpen, setIsOpen] = useState(obj.open);
   const { sidebarState, setSidebarState } = useTodoContext();
