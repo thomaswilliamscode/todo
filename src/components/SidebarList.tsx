@@ -3,7 +3,7 @@ import { useTodoContext } from "../context/TodoContext";
 import type { List } from "../types/list";
 import type { Inbox } from "../types/inbox";
 import "../Styles/sidebar.css";
-import { Droppable, Draggable } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
 type SidebarItem = List | Inbox;
 type index = number;
