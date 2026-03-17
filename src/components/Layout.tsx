@@ -10,6 +10,7 @@ import "../Styles/layout.css";
 import { DragDropContext } from "@hello-pangea/dnd";
 import type { DropResult } from "@hello-pangea/dnd";
 import type { List } from "../types/list.ts";
+import type { Folder } from "../types/folder.ts";
 
 export default function Layout() {
   const [sidebarState, setSidebarState] = useState<StateData>(() => {
@@ -43,7 +44,7 @@ export default function Layout() {
   const [focus, setFocus] = useState<"home" | "sidebar" | "focus" | null>(null);
 
   function onDragEnd(result: DropResult) {
-    const { source, destination, type, draggableId } = result;
+    const { source, destination } = result;
     console.log(`Result: `, result);
     if (!destination) return;
 
@@ -63,14 +64,15 @@ export default function Layout() {
           const newData = [...prev.data];
           // create source list todos !completed map
           let sourceList = newData.find(
-            (obj) => obj.type === "list" && obj.id === cleanId
+            (obj): obj is List => obj.type === "list" && obj.id === cleanId
           );
           let destList = newData.find(
-            (obj) => obj.type === "list" && obj.id === destCleanId
+            (obj): obj is List => obj.type === "list" && obj.id === destCleanId
           );
           if (!sourceList || !destList) {
             return prev;
           }
+
           let sourceTodos = sourceList.todos.filter((obj) => !obj.completed);
           // create dest list todos !completed map
 
@@ -112,13 +114,15 @@ export default function Layout() {
           // create new array
           const newData = [...prev.data];
           // find listId
-          let found = newData.find((item) => item.id === cleanId);
+          let found = newData.find((item): item is List => item.id === cleanId);
+          if (!found) return prev;
           // find index of found list
           let foundIndex = newData.findIndex((item) => item.id === cleanId);
           // get list obj based on foundIndex
-          let newList = newData[foundIndex];
+          let newList = newData[foundIndex] as List;
           // filter for non-completed todos
-          let foundUncompleted = found.todos.filter((todo) => !todo.completed);
+          let foundUncompleted = (found.todos as Todo[]).filter((todo) => !todo.completed);
+          if (!foundUncompleted) return prev;
           // copy non-completed todos
           let newTodos = [...foundUncompleted];
           // remove source index
@@ -156,7 +160,7 @@ export default function Layout() {
         console.log(newData);
         console.log(newData[sourceIndex], newData[destIndex]);
         // find lists with folderId
-        const [movedData] = newData.splice(sourceIndex, 1);
+        const [movedData] = newData.splice(sourceIndex, 1) as [List];
         movedData.folderId = `${folderId}`;
         console.log(movedData);
         newData.splice(destIndex, 0, movedData);
