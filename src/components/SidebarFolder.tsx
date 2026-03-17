@@ -5,15 +5,18 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useTodoContext } from "../context/TodoContext";
 import "../Styles/sidebar.css";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 type SidebarItem = Folder | List | Inbox;
+type index = number;
 
 type Props = {
   obj: Folder;
   data: SidebarItem[];
+  index: index;
 };
 
-export default function SidebarFolder({ obj, data }: Props) {
+export default function SidebarFolder({ obj, data, index }: Props) {
   const { name, id } = obj;
   const [isOpen, setIsOpen] = useState(obj.open);
   const { sidebarState, setSidebarState } = useTodoContext();
@@ -50,28 +53,39 @@ export default function SidebarFolder({ obj, data }: Props) {
   }
 
   function listsInFolders() {
-    return data.map((info) => {
+    return data.map((info, index) => {
       // Only lists have folderId + are linkable as lists
       if (info.type === "list" && info.folderId === obj.id) {
+        let key = `listNFolder-${info.id}`;
         return (
-          <div className="sidebar-List-in-Folder" key={`${info.id}-${obj.id}`}>
-            <span id="sidebar-folder-text">
-              <span className="sidebar-List-in-Folder-styling-span"></span>
-
-              <NavLink
-                to={`/list/${info.id}`}
-                end
-                className={({ isActive }) =>
-                  isActive ? "sidebar-list active" : "sidebar-list"
-                }
+          <Draggable draggableId={`${key}`} index={index} key={key}>
+            {(provided) => (
+              <div
+                className="sidebar-List-in-Folder"
+                key={`${info.id}-${obj.id}`}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                ref={provided.innerRef}
               >
-                <li className="listInFolder">{info.name}</li>
-              </NavLink>
-            </span>
-            <button className="del-btn" onClick={() => deleteList(info.id)}>
-              Delete
-            </button>
-          </div>
+                <span id="sidebar-folder-text">
+                  <span className="sidebar-List-in-Folder-styling-span"></span>
+
+                  <NavLink
+                    to={`/list/${info.id}`}
+                    end
+                    className={({ isActive }) =>
+                      isActive ? "sidebar-list active" : "sidebar-list"
+                    }
+                  >
+                    <li className="listInFolder">{info.name}</li>
+                  </NavLink>
+                </span>
+                <button className="del-btn" onClick={() => deleteList(info.id)}>
+                  Delete
+                </button>
+              </div>
+            )}
+          </Draggable>
         );
       }
 
@@ -107,13 +121,20 @@ export default function SidebarFolder({ obj, data }: Props) {
           Delete
         </button>
       </div>
-      <ul
-        className={`lists-in-folder sidebar-ul ${
-          isOpen ? "visible" : "hidden"
-        } `}
-      >
-        {listsInFolders()}
-      </ul>
+      <Droppable droppableId={`folder-${id}`} type="folder">
+        {(provided) => (
+          <ul
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className={`lists-in-folder sidebar-ul ${
+              isOpen ? "visible" : "hidden"
+            } `}
+          >
+            {listsInFolders()}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
     </div>
   );
 }

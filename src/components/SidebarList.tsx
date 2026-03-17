@@ -3,14 +3,17 @@ import { useTodoContext } from "../context/TodoContext";
 import type { List } from "../types/list";
 import type { Inbox } from "../types/inbox";
 import "../Styles/sidebar.css";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 type SidebarItem = List | Inbox;
+type index = number;
 
 type Props = {
   obj: SidebarItem;
+  index: index;
 };
 
-export default function SidebarList({ obj }: Props) {
+export default function SidebarList({ obj, index }: Props) {
   const { name, id } = obj;
   const { sidebarState, setSidebarState } = useTodoContext();
 
@@ -26,7 +29,7 @@ export default function SidebarList({ obj }: Props) {
   }
 
   function lookForInbox(id: string) {
-    if (id === '0') {
+    if (id === "0") {
       return (
         <div className="sidebar-ul-no-folder del-btn-inbox">
           <span className="no-folder-list-styling-span"></span>
@@ -48,23 +51,32 @@ export default function SidebarList({ obj }: Props) {
 
   function regularSidebar() {
     return (
-      <div className="sidebar-ul-no-folder">
-        <span className="no-folder-list-styling-span"></span>
-        <NavLink
-          to={`/list/${id}`}
-          end
-          className={({ isActive }) =>
-            isActive ? "sidebar-list active" : "sidebar-list"
-          }
-        >
-          {name}
-        </NavLink>
-        <button className="del-btn" onClick={() => deleteList(id)}>
-          Delete
-        </button>
-      </div>
+      <Draggable draggableId={`sidebarList-${id}`} index={index} key={id}>
+        {(provided) => (
+          <div
+            className="sidebar-ul-no-folder"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <span className="no-folder-list-styling-span"></span>
+            <NavLink
+              to={`/list/${id}`}
+              end
+              className={({ isActive }) =>
+                isActive ? "sidebar-list active" : "sidebar-list"
+              }
+            >
+              {name}
+            </NavLink>
+            <button className="del-btn" onClick={() => deleteList(id)}>
+              Delete
+            </button>
+          </div>
+        )}
+      </Draggable>
     );
   }
 
-  return <>{id === '0' ? lookForInbox(id) : regularSidebar()}</>;
+  return <>{id === "0" ? lookForInbox(id) : regularSidebar()}</>;
 }
