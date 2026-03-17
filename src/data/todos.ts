@@ -1,104 +1,123 @@
 import type { Todo } from "../types/todo";
+import { v4 as uuidv4 } from "uuid";
+
+import { list1, list2, list3, list4 } from "./id-info";
+
+const todo1: string = uuidv4();
+const todo2: string = uuidv4();
+const todo3: string = uuidv4();
+const todo4: string = uuidv4();
+const todo5: string = uuidv4();
+const todo6: string = uuidv4();
+const todo7: string = uuidv4();
+const todo8: string = uuidv4();
+const todo9: string = uuidv4();
+const todo10: string = uuidv4();
+const todo11: string = uuidv4();
+const todo12: string = uuidv4();
+const todo13: string = uuidv4();
+const todo14: string = uuidv4();
+const todo15: string = uuidv4();
 
 export const dummyData1: Todo[] = [
   {
-    id: "1",
+    id: todo1,
     title: "first",
     completed: false,
-    listId: "1",
+    listId: list1,
   },
   {
-    id: "2",
+    id: todo2,
     title: "Build a Todo App",
     completed: true,
-    listId: "1",
+    listId: list1,
   },
   {
-    id: "3",
+    id: todo3,
     title: "second",
     completed: false,
-    listId: "1",
+    listId: list1,
   },
 ];
 
 export const dummyData2: Todo[] = [
   {
-    id: "1",
+    id: todo4,
     title: "third",
     completed: false,
-    listId: "2",
+    listId: list2,
   },
   {
-    id: "2",
+    id: todo5,
     title: "oh ya",
     completed: true,
-    listId: "2",
+    listId: list2,
   },
   {
-    id: "3",
+    id: todo6,
     title: "fourth",
     completed: false,
-    listId: "2",
+    listId: list2,
   },
 ];
 
 export const dummyData3: Todo[] = [
   {
-    id: "1",
+    id: todo7,
     title: "fith",
     completed: false,
-    listId: "3",
+    listId: list3,
   },
   {
-    id: "2",
+    id: todo8,
     title: "love on ruby",
     completed: true,
-    listId: "3",
+    listId: list3,
   },
   {
-    id: "3",
+    id: todo9,
     title: "sith",
     completed: false,
-    listId: "3",
+    listId: list3,
   },
 ];
 
 export const dummyData4: Todo[] = [
   {
-    id: "1",
+    id: todo10,
     title: "seventh",
     completed: false,
-    listId: "4",
+    listId: list4,
   },
   {
-    id: "2",
+    id: todo11,
     title: "love on ruby",
     completed: true,
-    listId: "4",
+    listId: list4,
   },
   {
-    id: "3",
+    id: todo12,
     title: "eith",
     completed: false,
-    listId: "4",
+    listId: list4,
   },
 ];
 
 export const inboxData: Todo[] = [
   {
-    id: "1",
+    id: todo13,
     title: "First Focus",
     completed: false,
     listId: "0",
   },
   {
-    id: "2",
+    id: todo14,
     title: "Second Focus",
     completed: true,
     listId: "0",
   },
   {
-    id: "3",
+    id: todo15,
     title: "Third Focus",
     completed: false,
     listId: "0",

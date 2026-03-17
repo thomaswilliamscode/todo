@@ -3,20 +3,37 @@ import SidebarFolder from "./SidebarFolder";
 import SidebarList from "./SidebarList";
 import { NavLink } from "react-router-dom";
 import "../Styles/sidebar.css";
+import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 export default function SidebarFoldersAndLists() {
   const { sidebarState } = useTodoContext();
 
   function showInfo() {
     const data = sidebarState.data;
-    return data.map((obj) => {
+    return data.map((obj, index) => {
       const type = obj.type;
-      const key = `${obj.type} - ${obj.id}`;
+      const key = `${obj.type}-${obj.id}`;
       if (type === "folder") {
-        return <SidebarFolder key={key} obj={obj} data={data} />;
+        return (
+          <Draggable draggableId={`${key}`} index={index} key={key}>
+            {(provided) => (
+              <div
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                ref={provided.innerRef}
+              >
+                <SidebarFolder obj={obj} data={data} index={index} />
+              </div>
+            )}
+          </Draggable>
+        );
       }
       if (type === "list" && !obj.folderId) {
-        return <SidebarList key={key} obj={obj} />;
+        return (
+          <div key={key}>
+            <SidebarList obj={obj} index={index} />
+          </div>
+        );
       }
     });
   }
@@ -35,7 +52,18 @@ export default function SidebarFoldersAndLists() {
           </NavLink>
         </div>
       </div>
-      <div id="sidebar-bottom">{showInfo()}</div>
+      <Droppable droppableId={`root-`} type="root">
+        {(provided) => (
+          <div
+            id="sidebar-bottom"
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {showInfo()}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </div>
   );
 }
