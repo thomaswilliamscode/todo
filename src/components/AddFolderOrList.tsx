@@ -27,6 +27,12 @@ export default function AddFolderOrList() {
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    let arr = formState.title.split(" ");
+    let newArr = arr.map((string) => {
+      let newString = string.slice(0, 1).toUpperCase() + string.slice(1);
+      return newString;
+    });
+    let newString = newArr.join(" ");
 
     let newItem: any;
 
@@ -35,7 +41,7 @@ export default function AddFolderOrList() {
         id: uuidv4(), // replace createId
         todos: [],
         type: "list",
-        name: formState.title,
+        name: newString,
         folderId: formState.folderId || undefined,
       };
     } else if (formState.type === "folder") {
@@ -43,7 +49,7 @@ export default function AddFolderOrList() {
         id: uuidv4(), // replace createId
         open: false,
         type: "folder",
-        name: formState.title,
+        name: newString,
         folderId: formState.folderId || undefined,
       };
     }
@@ -60,6 +66,7 @@ export default function AddFolderOrList() {
       type: "list",
     });
   }
+
   return (
     <>
       <form onSubmit={submit}>
