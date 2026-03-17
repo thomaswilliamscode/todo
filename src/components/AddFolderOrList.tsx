@@ -16,8 +16,6 @@ export default function AddFolderOrList() {
 
     return (
       <>
-        <option value="">none</option>
-
         {folders.map((folder) => (
           <option value={folder.id} key={folder.id}>
             {folder.name}
