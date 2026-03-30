@@ -4,5 +4,5 @@ import type { Inbox } from './inbox'
 
 
 export interface StateData {
-  data: ( Folder | List | Inbox )[]
+  sidebar
 }
