@@ -19,17 +19,21 @@ export const data = [
   {
     id: folder1Id,
     name: "🔥 Daily Rituals",
+    position: 0,
   },
   {
     id: folder2Id,
-    name: "📦 Content",
+    name: "🏠 House Chores",
+    position: 1,
   },
     {
     id: folder3Id,
-    name: "🔥 Daily Rituals",
+    name: "</> Coding",
+    position: 2,
   },
   {
     id: folder4Id,
-    name: "📦 Content",
+    name: "💪🏼 Fitness",
+    position: 3,
   },
 ];
