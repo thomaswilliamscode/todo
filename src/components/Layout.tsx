@@ -9,7 +9,6 @@ import type { StateData } from "../types/state-data";
 import "../Styles/layout.css";
 import { DragDropContext } from "@hello-pangea/dnd";
 import type { DropResult } from "@hello-pangea/dnd";
-import type { List } from "../types/list.ts";
 
 export default function Layout() {
   const [sidebarState, setSidebarState] = useState<StateData>(() => {
