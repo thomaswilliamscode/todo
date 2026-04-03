@@ -1,11 +1,9 @@
 import type { StateData } from "../types/state-data";
 
 
-import { folder1Id, folder2Id } from "./folder-data";
+import { folder1Id, folder2Id, folder3Id, folder4Id } from "./helpers/id-info";
 
-import { list1, list2, list3, list4 } from "./helpers/id-info";
-
-export const stateData: StateData = {
+export const stateData: StateData[] = [
   {
       id: folder1Id,
       name: "🔥 Daily Rituals",
@@ -26,4 +24,4 @@ export const stateData: StateData = {
       name: "💪🏼 Fitness",
       position: 3,
     },
-};
+  ];
