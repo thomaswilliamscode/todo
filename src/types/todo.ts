@@ -1,6 +1,6 @@
 export interface Todo {
   id: string;
-  title: string;
-  completed: boolean;
+  name: string;
+  position: number,
   listId: string;
 }
