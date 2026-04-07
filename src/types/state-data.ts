@@ -1,8 +1,3 @@
+import type { Folder } from './folder'
 
-
-export interface StateData {
-  id: string, 
-  name: string,
-  position: number
-
-}
+export type StateData = Folder[]

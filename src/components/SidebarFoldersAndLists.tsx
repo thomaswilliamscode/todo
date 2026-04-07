@@ -9,7 +9,7 @@ export default function SidebarFoldersAndLists() {
   const { sidebarState } = useTodoContext();
 
   function showInfo() {
-    const data = sidebarState.data;
+    const data = sidebarState;
     return data.map((obj, index) => {
       const type = obj.type;
       const key = `${obj.type}-${obj.id}`;
